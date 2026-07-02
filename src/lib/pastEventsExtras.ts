@@ -1,4 +1,6 @@
-export type PressLink = { label: string; source?: string; date?: string; url: string; excerpt?: string };
+import { TDK_ASSETS } from "./tdkAssets";
+
+export type PressLink = { label: string; source?: string; date?: string; url: string; excerpt?: string; image?: string };
 export type Sponsor = { label: string; role: string; logo?: string };
 
 export type PastEventExtras = {
@@ -97,9 +99,11 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         label: "Manorama (print)",
         source: "Manorama",
         date: "Feb 15, 2023",
-        url: "https://tdksports.in/img/manorama_swimathon.png",
+        url: TDK_ASSETS.press.manoramaSwim,
+        image: TDK_ASSETS.press.manoramaSwim,
       },
     ],
+    gallery: [TDK_ASSETS.press.manoramaSwim, TDK_ASSETS.press.swimNews1, TDK_ASSETS.press.swimNews2],
     sponsors: [
       { label: "Florid", role: "Title Sponsor" },
       { label: "TDK Sports", role: "Organisor" },
@@ -138,18 +142,21 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
     categories: ["Kayak meetup", "River cleanup", "Free dive/snorkel training"],
     press: [
       {
-        label: "Mathrubhumi",
+        label: "Mathrubhumi (print)",
         source: "Mathrubhumi",
         date: "Sep 27, 2021",
-        url: "https://tdksports.in/img/gallery/paddlersmeetup/media/1.jpg",
+        url: TDK_ASSETS.images.paddlers1,
+        image: TDK_ASSETS.images.paddlers1,
       },
       {
         label: "Malayalam Manorama",
         source: "Malayalam Manorama",
         date: "Sep 27, 2021",
         url: "https://www.manoramaonline.com/district-news/ernakulam/2021/09/27/ernakulam-adventure-eco-tourism-project-in-aluva.html",
+        image: TDK_ASSETS.images.paddlers2,
       },
     ],
+    gallery: [TDK_ASSETS.images.paddlers1, TDK_ASSETS.images.paddlers2],
     sponsors: [
       { label: "Periyar Adventure Club", role: "Host" },
       { label: "TDK Sports", role: "Organisor" },
@@ -209,7 +216,15 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         excerpt:
           "Following the success of Kochi Duskathon 2018, the 2019 edition to be conducted in association with DTPC Ernakulam and Kerala Tourism.",
       },
+      {
+        label: "Malayalam Manorama (print)",
+        source: "Malayalam Manorama",
+        date: "Apr 08, 2019",
+        url: TDK_ASSETS.press.manorama,
+        image: TDK_ASSETS.press.manorama,
+      },
     ],
+    gallery: [TDK_ASSETS.press.manorama],
     sponsors: [
       { label: "DTPC Ernakulam", role: "In Association With" },
       { label: "Kerala Tourism", role: "In Association With" },
@@ -250,9 +265,11 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         label: "Madhyamam (print)",
         source: "Madhyamam",
         date: "Dec 29, 2017",
-        url: "https://tdksports.in/img/Madhyamam_Press_Release.jpg",
+        url: TDK_ASSETS.press.madhyamam,
+        image: TDK_ASSETS.press.madhyamam,
       },
     ],
+    gallery: [TDK_ASSETS.press.madhyamam],
     sponsors: [
       { label: "DTPC Ernakulam", role: "In Association With" },
       { label: "Kerala Tourism", role: "In Association With" },

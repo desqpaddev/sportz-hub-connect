@@ -7,6 +7,7 @@ import type { Tables } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PAST_EVENTS_EXTRAS } from "@/lib/pastEventsExtras";
+import { PARTNER_LOGOS } from "@/lib/tdkAssets";
 
 type Event = Tables<"events">;
 
@@ -190,11 +191,35 @@ const PastEventDetail = () => {
                 <Handshake size={22} className="text-primary" /> Sponsors & Partners
               </h2>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-                {extras.sponsors.map((s) => (
-                  <div key={s.label} className="p-4 rounded-lg border border-border bg-card">
-                    <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">{s.role}</p>
-                    <p className="font-semibold text-foreground">{s.label}</p>
-                  </div>
+                {extras.sponsors.map((s) => {
+                  const logo = s.logo || PARTNER_LOGOS[s.label];
+                  return (
+                    <div key={s.label} className="p-4 rounded-lg border border-border bg-card flex items-center gap-3">
+                      {logo && (
+                        <div className="w-14 h-14 shrink-0 rounded bg-white border border-border flex items-center justify-center p-1.5">
+                          <img src={logo} alt={s.label} className="max-w-full max-h-full object-contain" />
+                        </div>
+                      )}
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-wider text-primary font-semibold mb-0.5">{s.role}</p>
+                        <p className="font-semibold text-foreground text-sm truncate">{s.label}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Gallery */}
+          {extras.gallery && extras.gallery.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold font-display uppercase mb-4">Gallery</h2>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {extras.gallery.map((src) => (
+                  <a key={src} href={src} target="_blank" rel="noopener noreferrer" className="block aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card">
+                    <img src={src} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </a>
                 ))}
               </div>
             </section>
@@ -205,26 +230,33 @@ const PastEventDetail = () => {
             <section>
               <h2 className="text-2xl font-bold font-display uppercase mb-4">Press Coverage</h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                {extras.press.map((p) => (
+                {extras.press.map((p: any) => (
                   <a
                     key={p.url}
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-card transition-all group"
+                    className="rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-card transition-all group overflow-hidden flex flex-col"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs uppercase tracking-wider font-semibold text-primary">
-                        {p.source || "Press"}
-                      </span>
-                      {p.date && <span className="text-xs text-muted-foreground">{p.date}</span>}
-                    </div>
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
-                      {p.label}
-                    </h3>
-                    {p.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
-                    <div className="flex items-center gap-1 mt-3 text-xs text-primary font-semibold">
-                      Read more <ExternalLink size={12} />
+                    {p.image && (
+                      <div className="aspect-video bg-muted overflow-hidden">
+                        <img src={p.image} alt={p.label} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className="p-5">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs uppercase tracking-wider font-semibold text-primary">
+                          {p.source || "Press"}
+                        </span>
+                        {p.date && <span className="text-xs text-muted-foreground">{p.date}</span>}
+                      </div>
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
+                        {p.label}
+                      </h3>
+                      {p.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
+                      <div className="flex items-center gap-1 mt-3 text-xs text-primary font-semibold">
+                        Read more <ExternalLink size={12} />
+                      </div>
                     </div>
                   </a>
                 ))}
