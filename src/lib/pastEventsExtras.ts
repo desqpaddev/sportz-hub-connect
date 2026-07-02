@@ -215,6 +215,7 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         url: "https://www.deccanchronicle.com/lifestyle/travel/140319/kochi-duskathon-in-april.html",
         excerpt:
           "Following the success of Kochi Duskathon 2018, the 2019 edition to be conducted in association with DTPC Ernakulam and Kerala Tourism.",
+      },
       {
         label: "Malayalam Manorama (print)",
         source: "Malayalam Manorama",
