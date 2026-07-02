@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index.tsx";
 import EventsPage from "./pages/Events.tsx";
+import PastEvents from "./pages/PastEvents.tsx";
 import EventDetail from "./pages/EventDetail.tsx";
 import AboutPage from "./pages/About.tsx";
 import AuthPage from "./pages/Auth.tsx";
@@ -50,6 +51,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/events" element={<EventsPage />} />
+            <Route path="/past-events" element={<PastEvents />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<AuthPage />} />
