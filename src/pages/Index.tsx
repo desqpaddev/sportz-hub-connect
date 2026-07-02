@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Trophy, ChevronRight, Waves, Footprints, Bike, Users, Phone, Mail, MapPin, Newspaper } from "lucide-react";
+import heroSwim from "@/assets/hero-swim.jpg.asset.json";
 
 const editions = [
   {
@@ -107,10 +108,10 @@ const Index = () => {
         {/* Background image with heavy scrim for readability */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://tdksports.in/img/swimathon2026.webp"
+            src={heroSwim.url}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-70"
             loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[hsl(220_45%_10%)] via-[hsl(220_45%_10%)]/95 to-[hsl(220_45%_10%)]/70" />
