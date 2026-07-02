@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Trophy, ChevronRight, Waves, Footprints, Bike, Users, Phone, Mail, MapPin, Newspaper } from "lucide-react";
+import heroSwim from "@/assets/hero-swim.jpg.asset.json";
 
 const editions = [
   {
