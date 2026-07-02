@@ -28,8 +28,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Khelium" className="h-9 w-9" />
-          <span className="text-xl font-bold tracking-tight font-display text-foreground">KHELIUM</span>
+          <img src={logo} alt="TDK Sports" className="h-9 w-9" />
+          <span className="text-xl font-bold tracking-tight font-display text-foreground">TDK SPORTS</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
