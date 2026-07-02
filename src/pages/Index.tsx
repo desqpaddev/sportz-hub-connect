@@ -111,7 +111,7 @@ const Index = () => {
             src={heroSwim.url}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-70"
             loading="eager"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[hsl(220_45%_10%)] via-[hsl(220_45%_10%)]/95 to-[hsl(220_45%_10%)]/70" />
