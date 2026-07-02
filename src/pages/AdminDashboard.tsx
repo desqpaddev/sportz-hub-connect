@@ -406,13 +406,13 @@ const AdminDashboard = () => {
             { value: "tickets", label: "Tickets", resource: "events" },
             { value: "discounts", label: "Discounts", resource: "discounts" },
             { value: "registrations", label: "Registrations", resource: "registrations" },
-            { value: "results", label: "Results", resource: "results" },
+            // { value: "results", label: "Results", resource: "results" }, // Hidden
             // { value: "users", label: "Users", resource: "users" }, // Hidden for now
             { value: "finance", label: "Finance", resource: "finance", icon: <IndianRupee size={14} className="mr-1" /> },
             { value: "analytics", label: "Analytics", resource: "analytics" },
-            { value: "leaderboard", label: "Leaderboard", resource: "results" },
+            // { value: "leaderboard", label: "Leaderboard", resource: "results" }, // Hidden
             { value: "scanner", label: "Scanner", resource: "scanner", icon: <QrCode size={14} className="mr-1" /> },
-            { value: "chat", label: "Chat", resource: "chat", icon: <MessageCircle size={14} className="mr-1" /> },
+            // { value: "chat", label: "Chat", resource: "chat", icon: <MessageCircle size={14} className="mr-1" /> }, // Hidden
             { value: "settings", label: "Settings", resource: "settings", icon: <Settings size={14} className="mr-1" /> },
           ];
           

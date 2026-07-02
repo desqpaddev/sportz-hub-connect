@@ -195,9 +195,7 @@ const Dashboard = () => {
             <TabsTrigger value="registrations" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground uppercase text-xs font-semibold tracking-wider">
               <Calendar size={14} className="mr-2" /> Registrations
             </TabsTrigger>
-            <TabsTrigger value="results" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground uppercase text-xs font-semibold tracking-wider">
-              <Trophy size={14} className="mr-2" /> Results
-            </TabsTrigger>
+            {/* Results tab hidden */}
             <TabsTrigger value="profile" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground uppercase text-xs font-semibold tracking-wider">
               <User size={14} className="mr-2" /> Profile
             </TabsTrigger>
