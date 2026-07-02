@@ -7,6 +7,7 @@ import type { Tables } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PAST_EVENTS_EXTRAS } from "@/lib/pastEventsExtras";
+import { PARTNER_LOGOS } from "@/lib/tdkAssets";
 
 type Event = Tables<"events">;
 
