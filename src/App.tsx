@@ -14,7 +14,7 @@ import AuthPage from "./pages/Auth.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import Results from "./pages/Results.tsx";
+
 import MyTicket from "./pages/MyTicket.tsx";
 import PaymentStatus from "./pages/PaymentStatus.tsx";
 import ChatbotWidget from "@/components/ChatbotWidget";
