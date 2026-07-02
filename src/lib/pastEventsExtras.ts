@@ -265,9 +265,11 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         label: "Madhyamam (print)",
         source: "Madhyamam",
         date: "Dec 29, 2017",
-        url: "https://tdksports.in/img/Madhyamam_Press_Release.jpg",
+        url: TDK_ASSETS.press.madhyamam,
+        image: TDK_ASSETS.press.madhyamam,
       },
     ],
+    gallery: [TDK_ASSETS.press.madhyamam],
     sponsors: [
       { label: "DTPC Ernakulam", role: "In Association With" },
       { label: "Kerala Tourism", role: "In Association With" },
