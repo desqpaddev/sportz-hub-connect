@@ -51,13 +51,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        khelium: {
-          red: "hsl(var(--khelium-red))",
-          orange: "hsl(var(--khelium-orange))",
-          navy: "hsl(var(--khelium-navy))",
-          light: "hsl(var(--khelium-light))",
-          surface: "hsl(var(--khelium-surface))",
-          glow: "hsl(var(--khelium-glow))",
+        tdk: {
+          red: "hsl(var(--tdk-primary))",
+          orange: "hsl(var(--tdk-accent))",
+          navy: "hsl(var(--tdk-navy))",
+          light: "hsl(var(--tdk-light))",
+          surface: "hsl(var(--tdk-surface))",
+          glow: "hsl(var(--tdk-glow))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

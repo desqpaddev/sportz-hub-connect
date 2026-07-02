@@ -71,8 +71,8 @@ const EventsPage = () => {
       <section className="relative pt-20 overflow-hidden">
         <div className="absolute inset-0">
           <img src={eventsHero} alt="Events" className="w-full h-full object-cover" width={1920} height={720} />
-          <div className="absolute inset-0 bg-gradient-to-r from-khelium-navy/95 via-khelium-navy/80 to-khelium-navy/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-khelium-navy via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-tdk-navy/95 via-tdk-navy/80 to-tdk-navy/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-tdk-navy via-transparent to-transparent opacity-60" />
         </div>
         <div className="relative container mx-auto px-4 py-20 md:py-28">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
@@ -84,7 +84,7 @@ const EventsPage = () => {
               Browse <span className="text-primary">Events</span>
             </h1>
             <p className="text-lg text-gray-300 max-w-lg leading-relaxed">
-              Discover and register for KHELIUM sports events across Kerala. Filter by sport, city, or age group.
+              Discover and register for TDK SPORTS sports events across Kerala. Filter by sport, city, or age group.
             </p>
 
             {/* Quick stats */}

@@ -130,7 +130,7 @@ const EventDetail = () => {
         {(event as any).image_url && (
           <div className="absolute inset-0">
             <img src={(event as any).image_url} alt={event.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-khelium-navy/95 via-khelium-navy/80 to-khelium-navy/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-tdk-navy/95 via-tdk-navy/80 to-tdk-navy/50" />
           </div>
         )}
         <div className="relative container mx-auto px-4 py-10">

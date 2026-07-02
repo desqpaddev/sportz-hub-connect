@@ -9,7 +9,7 @@ const testimonials = [
     name: "Priya Menon",
     role: "Parent of U14 Track Athlete",
     city: "Kochi",
-    quote: "KHELIUM transformed my daughter's confidence. The professional setup, RFID timing, and coaching feedback after the 100m sprint was something we never expected at a school-level event. She's now training for nationals!",
+    quote: "TDK SPORTS transformed my daughter's confidence. The professional setup, RFID timing, and coaching feedback after the 100m sprint was something we never expected at a school-level event. She's now training for nationals!",
     rating: 5,
     initials: "PM",
   },
@@ -17,7 +17,7 @@ const testimonials = [
     name: "Rajesh Kumar",
     role: "School Sports Coach",
     city: "Trivandrum",
-    quote: "I've been coaching for 15 years and KHELIUM is the most professionally organized school sports platform I've seen. The digital results, certificates, and the way they handle age-group categorization — it's truly world-class.",
+    quote: "I've been coaching for 15 years and TDK SPORTS is the most professionally organized school sports platform I've seen. The digital results, certificates, and the way they handle age-group categorization — it's truly world-class.",
     rating: 5,
     initials: "RK",
   },
@@ -25,7 +25,7 @@ const testimonials = [
     name: "Ananya Nair",
     role: "U16 Swimming Champion",
     city: "Kozhikode",
-    quote: "Competing at KHELIUM felt like being at a real championship. The electronic touch-pad timing in swimming gave me accurate splits for the first time. I improved my personal best by 2 seconds!",
+    quote: "Competing at TDK SPORTS felt like being at a real championship. The electronic touch-pad timing in swimming gave me accurate splits for the first time. I improved my personal best by 2 seconds!",
     rating: 5,
     initials: "AN",
   },
@@ -41,7 +41,7 @@ const testimonials = [
     name: "Meera Thomas",
     role: "Parent of U12 Athlete",
     city: "Trivandrum",
-    quote: "My son was nervous about his first competition, but the KHELIUM team made him feel like a champion even before the race started. The QR-code check-in and digital ticket system was so smooth!",
+    quote: "My son was nervous about his first competition, but the TDK SPORTS team made him feel like a champion even before the race started. The QR-code check-in and digital ticket system was so smooth!",
     rating: 5,
     initials: "MT",
   },
@@ -95,7 +95,7 @@ const TestimonialSection = () => {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground uppercase">What People Say</h2>
           <p className="text-muted-foreground mt-3 text-lg max-w-xl mx-auto">
-            Hear from parents, coaches, and young athletes who've experienced the KHELIUM difference.
+            Hear from parents, coaches, and young athletes who've experienced the TDK SPORTS difference.
           </p>
         </motion.div>
 

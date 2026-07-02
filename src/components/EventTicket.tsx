@@ -72,7 +72,7 @@ const EventTicket = ({
     // Header
     ctx.fillStyle = "#f97316";
     ctx.font = "bold 28px Oswald, sans-serif";
-    ctx.fillText("KHELIUM", 30, 50);
+    ctx.fillText("TDK SPORTS", 30, 50);
     ctx.fillStyle = "#64748b";
     ctx.font = "10px Inter, sans-serif";
     ctx.letterSpacing = "3px";
@@ -150,7 +150,7 @@ const EventTicket = ({
     img.onload = () => {
       drawTicket(ctx, img);
       const link = document.createElement("a");
-      link.download = `KHELIUM_Ticket_${registrationNumber}.png`;
+      link.download = `TDK SPORTS_Ticket_${registrationNumber}.png`;
       link.href = canvasRef.current!.toDataURL("image/png");
       link.click();
     };
@@ -167,7 +167,7 @@ const EventTicket = ({
           {/* Left content */}
           <div className="flex-1 p-6 pr-4">
             <div className="mb-4">
-              <h3 className="text-xl font-bold font-display text-primary">KHELIUM</h3>
+              <h3 className="text-xl font-bold font-display text-primary">TDK SPORTS</h3>
               <p className="text-[10px] tracking-[3px] text-muted-foreground">SPORTS FOR EVERY CHILD</p>
             </div>
 

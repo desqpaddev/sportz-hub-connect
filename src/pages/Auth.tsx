@@ -57,7 +57,7 @@ const AuthPage = () => {
               {isSignUp ? "Create Account" : "Welcome Back"}
             </h1>
             <p className="text-sm text-muted-foreground mt-1">
-              {isSignUp ? "Join KHELIUM and start your journey" : "Sign in to your KHELIUM account"}
+              {isSignUp ? "Join TDK SPORTS and start your journey" : "Sign in to your TDK SPORTS account"}
             </p>
           </div>
 

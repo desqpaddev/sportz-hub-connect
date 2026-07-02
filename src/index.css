@@ -46,12 +46,12 @@
     --sidebar-ring: 215 85% 42%;
 
     /* Custom tokens */
-    --khelium-red: 215 85% 42%;
-    --khelium-orange: 200 95% 55%;
-    --khelium-navy: 215 55% 14%;
-    --khelium-light: 210 40% 97%;
-    --khelium-surface: 0 0% 100%;
-    --khelium-glow: 215 90% 55%;
+    --tdk-primary: 215 85% 42%;
+    --tdk-accent: 200 95% 55%;
+    --tdk-navy: 215 55% 14%;
+    --tdk-light: 210 40% 97%;
+    --tdk-surface: 0 0% 100%;
+    --tdk-glow: 215 90% 55%;
 
     --gradient-hero: linear-gradient(135deg, hsl(215 55% 14%), hsl(215 85% 40%));
     --gradient-accent: linear-gradient(135deg, hsl(215 85% 42%), hsl(200 95% 55%));
@@ -99,7 +99,7 @@
     box-shadow: var(--shadow-card);
   }
   .section-dark {
-    background-color: hsl(var(--khelium-navy));
+    background-color: hsl(var(--tdk-navy));
     color: hsl(0 0% 96%);
   }
 }

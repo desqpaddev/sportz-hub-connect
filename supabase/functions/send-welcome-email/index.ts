@@ -35,21 +35,21 @@ serve(async (req) => {
       throw new Error("SMTP host, user, and password are required");
     }
 
-    const fromName = cfg.smtp_from_name || "KHELIUM";
+    const fromName = cfg.smtp_from_name || "TDK SPORTS";
     const fromEmail = cfg.smtp_from_email || cfg.smtp_user;
     const name = fullName || "Athlete";
 
     const html = `
     <div style="font-family:'Segoe UI',Arial,sans-serif;max-width:600px;margin:0 auto;padding:0;background:#ffffff;">
       <div style="background:linear-gradient(135deg,#e53e3e,#c53030);padding:40px 30px;text-align:center;border-radius:12px 12px 0 0;">
-        <h1 style="color:#ffffff;margin:0;font-size:28px;font-weight:800;letter-spacing:2px;">KHELIUM</h1>
+        <h1 style="color:#ffffff;margin:0;font-size:28px;font-weight:800;letter-spacing:2px;">TDK SPORTS</h1>
         <p style="color:rgba(255,255,255,0.9);margin:8px 0 0;font-size:14px;letter-spacing:1px;">SPORTS EVENTS PLATFORM</p>
       </div>
       
       <div style="padding:35px 30px;">
         <h2 style="color:#1a1a1a;font-size:22px;margin:0 0 15px;">Welcome aboard, ${name}! 🎉</h2>
         <p style="color:#555;font-size:15px;line-height:1.7;margin:0 0 20px;">
-          Thank you for creating your KHELIUM account. You're now part of an amazing community of athletes and sports enthusiasts.
+          Thank you for creating your TDK SPORTS account. You're now part of an amazing community of athletes and sports enthusiasts.
         </p>
         
         <div style="background:#fef2f2;border-left:4px solid #e53e3e;padding:18px 20px;border-radius:0 8px 8px 0;margin:20px 0;">
@@ -76,7 +76,7 @@ serve(async (req) => {
       </div>
 
       <div style="background:#f8f8f8;padding:20px 30px;text-align:center;border-radius:0 0 12px 12px;border-top:1px solid #eee;">
-        <p style="color:#999;font-size:11px;margin:0;">© ${new Date().getFullYear()} KHELIUM. All rights reserved.</p>
+        <p style="color:#999;font-size:11px;margin:0;">© ${new Date().getFullYear()} TDK SPORTS. All rights reserved.</p>
       </div>
     </div>`;
 
@@ -108,8 +108,8 @@ serve(async (req) => {
         await client.send({
           from: `${fromName} <${fromEmail}>`,
           to,
-          subject: `Welcome to KHELIUM, ${name}! 🏅`,
-          content: `Welcome to KHELIUM, ${name}! Your account has been created successfully.`,
+          subject: `Welcome to TDK SPORTS, ${name}! 🏅`,
+          content: `Welcome to TDK SPORTS, ${name}! Your account has been created successfully.`,
           html,
         });
 
