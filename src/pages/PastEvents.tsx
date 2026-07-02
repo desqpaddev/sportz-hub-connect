@@ -86,11 +86,13 @@ const PastEvents = () => {
                         className="w-full h-full"
                       />
                     ) : event.image_url ? (
-                      <img src={event.image_url} alt={event.title} className="w-full h-full object-cover" />
+                      <Link to={`/past-events/${event.id}`} className="block w-full h-full">
+                        <img src={event.image_url} alt={event.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                      </Link>
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-primary/40">
+                      <Link to={`/past-events/${event.id}`} className="w-full h-full flex items-center justify-center text-primary/40">
                         <Play size={64} />
-                      </div>
+                      </Link>
                     )}
                   </div>
 
