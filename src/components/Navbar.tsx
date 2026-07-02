@@ -8,6 +8,7 @@ import logo from "@/assets/tdk-logo.png";
 const navLinks = [
   { label: "Home", path: "/" },
   { label: "Events", path: "/events" },
+  { label: "Past Events", path: "/past-events" },
   { label: "About", path: "/about" },
 ];
 
