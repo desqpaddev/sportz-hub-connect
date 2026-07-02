@@ -187,6 +187,23 @@ const Dashboard = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8">
+        {profile && (profile as any).verification_status !== "verified" && (
+          <div className="mb-6 rounded-lg border-2 border-yellow-500/50 bg-yellow-500/10 p-4 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <p className="font-bold text-foreground uppercase text-sm font-display">
+                {(profile as any).verification_status === "pending" ? "Verification pending" : (profile as any).verification_status === "rejected" ? "Verification failed" : "Complete your profile"}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Finish ID + face verification to unlock the "Verified" badge on your registrations.
+              </p>
+            </div>
+            <Link to="/complete-profile">
+              <Button size="sm" className="bg-primary text-primary-foreground uppercase font-bold">
+                {(profile as any).verification_status === "unverified" ? "Complete Profile" : "Retry Verification"}
+              </Button>
+            </Link>
+          </div>
+        )}
         <Tabs defaultValue="events" className="space-y-6">
           <TabsList className="bg-card border border-border flex-wrap">
             <TabsTrigger value="events" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground uppercase text-xs font-semibold tracking-wider">
