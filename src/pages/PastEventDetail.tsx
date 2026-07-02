@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, MapPin, Users, ExternalLink, Play } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, Users, ExternalLink, Play, Trophy, Handshake } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
@@ -58,9 +58,7 @@ const PastEventDetail = () => {
             <ArrowLeft size={16} /> Back to Past Events
           </Link>
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <Badge className="bg-primary/20 text-primary border-primary/30 uppercase tracking-wider">
-              {event.sport}
-            </Badge>
+            <Badge className="bg-primary/20 text-primary border-primary/30 uppercase tracking-wider">{event.sport}</Badge>
             <Badge variant="outline" className="text-gray-200 border-gray-500 uppercase tracking-wider">
               Completed
             </Badge>
@@ -87,7 +85,7 @@ const PastEventDetail = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid gap-10"
+          className="grid gap-12"
         >
           {/* Media */}
           <div className="relative aspect-video rounded-xl overflow-hidden bg-tdk-navy shadow-card">
@@ -109,18 +107,55 @@ const PastEventDetail = () => {
             )}
           </div>
 
-          {/* Description */}
-          {event.description && (
+          {/* Stats */}
+          {extras.stats && extras.stats.length > 0 && (
+            <section className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {extras.stats.map((s) => (
+                <div key={s.label} className="p-5 rounded-lg bg-primary/5 border border-primary/20 text-center">
+                  <p className="text-3xl font-bold font-display text-primary">{s.value}</p>
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{s.label}</p>
+                </div>
+              ))}
+            </section>
+          )}
+
+          {/* About */}
+          {(extras.about || event.description) && (
             <section>
               <h2 className="text-2xl font-bold font-display uppercase mb-3">About the Event</h2>
-              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{event.description}</p>
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                {extras.about || event.description}
+              </p>
+              {extras.about && event.description && event.description !== extras.about && (
+                <p className="text-muted-foreground leading-relaxed mt-3 whitespace-pre-line">{event.description}</p>
+              )}
+            </section>
+          )}
+
+          {/* Categories */}
+          {extras.categories && extras.categories.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold font-display uppercase mb-4">Categories</h2>
+              <div className="flex flex-wrap gap-2">
+                {extras.categories.map((c) => (
+                  <Badge
+                    key={c}
+                    variant="outline"
+                    className="text-sm px-4 py-1.5 border-primary/30 text-foreground bg-primary/5"
+                  >
+                    {c}
+                  </Badge>
+                ))}
+              </div>
             </section>
           )}
 
           {/* Highlights */}
           {extras.highlights && extras.highlights.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold font-display uppercase mb-4">Highlights</h2>
+              <h2 className="text-2xl font-bold font-display uppercase mb-4 flex items-center gap-2">
+                <Trophy size={22} className="text-primary" /> Highlights
+              </h2>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {extras.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-3 p-4 rounded-lg border border-border bg-card">
@@ -148,16 +183,49 @@ const PastEventDetail = () => {
             </div>
           </section>
 
+          {/* Sponsors / Partners */}
+          {extras.sponsors && extras.sponsors.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold font-display uppercase mb-4 flex items-center gap-2">
+                <Handshake size={22} className="text-primary" /> Sponsors & Partners
+              </h2>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {extras.sponsors.map((s) => (
+                  <div key={s.label} className="p-4 rounded-lg border border-border bg-card">
+                    <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">{s.role}</p>
+                    <p className="font-semibold text-foreground">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Press */}
           {extras.press && extras.press.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold font-display uppercase mb-4">Press Coverage</h2>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {extras.press.map((p) => (
-                  <a key={p.url} href={p.url} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" className="gap-2">
-                      <ExternalLink size={14} /> {p.label}
-                    </Button>
+                  <a
+                    key={p.url}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-card transition-all group"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs uppercase tracking-wider font-semibold text-primary">
+                        {p.source || "Press"}
+                      </span>
+                      {p.date && <span className="text-xs text-muted-foreground">{p.date}</span>}
+                    </div>
+                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
+                      {p.label}
+                    </h3>
+                    {p.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
+                    <div className="flex items-center gap-1 mt-3 text-xs text-primary font-semibold">
+                      Read more <ExternalLink size={12} />
+                    </div>
                   </a>
                 ))}
               </div>
@@ -171,9 +239,7 @@ const PastEventDetail = () => {
               </Button>
             </Link>
             <Link to="/events">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                See Upcoming Events
-              </Button>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">See Upcoming Events</Button>
             </Link>
           </div>
         </motion.div>
