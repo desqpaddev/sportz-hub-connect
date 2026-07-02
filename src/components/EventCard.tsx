@@ -73,8 +73,7 @@ const EventCard = ({ event }: EventCardProps) => {
             </p>
           </div>
 
-          <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-foreground">₹{event.price}</span>
+          <div className="flex justify-end">
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider text-xs font-semibold">
               View Details
             </Button>
