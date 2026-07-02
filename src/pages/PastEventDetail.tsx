@@ -230,26 +230,33 @@ const PastEventDetail = () => {
             <section>
               <h2 className="text-2xl font-bold font-display uppercase mb-4">Press Coverage</h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                {extras.press.map((p) => (
+                {extras.press.map((p: any) => (
                   <a
                     key={p.url}
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-5 rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-card transition-all group"
+                    className="rounded-lg border border-border bg-card hover:border-primary/50 hover:shadow-card transition-all group overflow-hidden flex flex-col"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs uppercase tracking-wider font-semibold text-primary">
-                        {p.source || "Press"}
-                      </span>
-                      {p.date && <span className="text-xs text-muted-foreground">{p.date}</span>}
-                    </div>
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
-                      {p.label}
-                    </h3>
-                    {p.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
-                    <div className="flex items-center gap-1 mt-3 text-xs text-primary font-semibold">
-                      Read more <ExternalLink size={12} />
+                    {p.image && (
+                      <div className="aspect-video bg-muted overflow-hidden">
+                        <img src={p.image} alt={p.label} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className="p-5">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs uppercase tracking-wider font-semibold text-primary">
+                          {p.source || "Press"}
+                        </span>
+                        {p.date && <span className="text-xs text-muted-foreground">{p.date}</span>}
+                      </div>
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-2 leading-snug">
+                        {p.label}
+                      </h3>
+                      {p.excerpt && <p className="text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
+                      <div className="flex items-center gap-1 mt-3 text-xs text-primary font-semibold">
+                        Read more <ExternalLink size={12} />
+                      </div>
                     </div>
                   </a>
                 ))}
