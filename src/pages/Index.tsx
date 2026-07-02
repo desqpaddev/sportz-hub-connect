@@ -103,84 +103,103 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* HERO — Flagship Swimathon 2026 */}
-      <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28 section-dark">
-        <div className="absolute inset-0 opacity-30" style={{
-          background: "radial-gradient(ellipse at top left, hsl(var(--primary) / 0.35), transparent 55%), radial-gradient(ellipse at bottom right, hsl(var(--accent) / 0.25), transparent 55%)"
-        }} />
-        <div className="absolute inset-0 opacity-[0.06]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
-          backgroundSize: '28px 28px',
-        }} />
+      <section className="relative overflow-hidden bg-[hsl(220_45%_10%)]">
+        {/* Background image with heavy scrim for readability */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://tdksports.in/img/swimathon2026.webp"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-40"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(220_45%_10%)] via-[hsl(220_45%_10%)]/95 to-[hsl(220_45%_10%)]/70" />
+          <div className="absolute inset-0 opacity-[0.05]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`,
+            backgroundSize: '28px 28px',
+          }} />
+        </div>
 
-        <div className="container relative mx-auto px-4 grid lg:grid-cols-12 gap-10 items-center">
+        <div className="container relative z-10 mx-auto px-4 pt-32 pb-24 md:pt-40 md:pb-32">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-7"
+            className="max-w-4xl"
           >
-            <div className="inline-flex items-center gap-2 border border-primary/30 bg-primary/10 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs md:text-sm font-semibold text-primary uppercase tracking-[0.25em]">Registrations Open</span>
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="h-[2px] w-12 bg-accent" />
+              <span className="text-xs md:text-sm font-semibold text-accent uppercase tracking-[0.28em]">
+                Flagship Event · 2026
+              </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display uppercase leading-[1.02] text-foreground">
-              Endurance Events.<br />
-              <span className="text-primary">Kerala's Wildest</span> Playground.
+            {/* H1 */}
+            <h1 className="font-display uppercase font-bold text-white leading-[0.92] tracking-tight text-5xl md:text-7xl lg:text-[5.75rem]">
+              Federal Bank<br />
+              <span className="text-primary">Kochi Swimathon</span><br />
+              <span className="text-white/95">Ultra 2026</span>
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              TDK Sports organises India's largest river swimathon, barefoot beach runs, paddler meetups and cyclothons — turning the Periyar, Cherai and Sabarimala trails into arenas of grit.
+            {/* Supporting line */}
+            <p className="mt-8 text-lg md:text-xl text-white/70 max-w-2xl leading-relaxed">
+              India's largest open-water swimathon on the River Periyar. Fresh water, professional safety cover, 5th edition — where Kerala's endurance athletes rise.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            {/* Meta row */}
+            <div className="mt-10 flex flex-wrap gap-y-6 gap-x-12 border-l-2 border-primary pl-6 md:pl-8">
+              <div className="flex flex-col">
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 mb-1.5">Date</span>
+                <span className="font-display uppercase text-2xl md:text-3xl text-white">12 April 2026</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 mb-1.5">Location</span>
+                <span className="font-display uppercase text-2xl md:text-3xl text-white">Kochi, Kerala</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 mb-1.5">Category</span>
+                <span className="font-display uppercase text-2xl md:text-3xl text-white">Open Water</span>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <Link to="/events">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-glow gap-3 uppercase tracking-wider font-bold px-8">
-                  Register for Swimathon 2026 <Trophy size={18} />
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider font-bold px-10 py-6 text-base gap-3 shadow-glow w-full sm:w-auto">
+                  Register Now <Trophy size={18} />
                 </Button>
               </Link>
-              <Link to="/results">
-                <Button size="lg" variant="outline" className="uppercase tracking-wider font-bold gap-2 border-border">
-                  Timing & E-Certificates <ChevronRight size={16} />
+              <Link to="/events">
+                <Button size="lg" variant="outline" className="uppercase tracking-wider font-bold px-10 py-6 text-base gap-2 bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white hover:border-white w-full sm:w-auto">
+                  Explore Events <ChevronRight size={16} />
                 </Button>
               </Link>
             </div>
 
-            <div className="mt-10 grid grid-cols-3 gap-6 max-w-lg">
+            {/* Stats */}
+            <div className="mt-14 grid grid-cols-3 gap-6 max-w-xl border-t border-white/10 pt-8">
               {[
                 { v: "727", l: "Swimmers 2025" },
                 { v: "10+", l: "Editions" },
                 { v: "12", l: "Years Running" },
               ].map((s) => (
                 <div key={s.l}>
-                  <p className="text-3xl md:text-4xl font-bold font-display text-foreground">{s.v}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mt-1">{s.l}</p>
+                  <p className="text-3xl md:text-4xl font-bold font-display text-white">{s.v}</p>
+                  <p className="text-[10px] md:text-xs uppercase tracking-[0.22em] text-white/50 mt-1.5">{s.l}</p>
                 </div>
               ))}
             </div>
           </motion.div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-5"
-          >
-            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-glow">
-              <img
-                src="https://tdksports.in/img/swimathon2026.webp"
-                alt="Federal Bank Kochi Swimathon Ultra 2026 — 12 April 2026"
-                className="w-full h-auto"
-                loading="eager"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-xs uppercase tracking-[0.25em] text-primary font-semibold">5th Edition • 12 Apr 2026</p>
-                <p className="text-white font-bold font-display text-lg md:text-xl mt-1">Federal Bank Kochi Swimathon Ultra</p>
-              </div>
-            </div>
-          </motion.div>
+        {/* Decorative TDK wordmark */}
+        <div className="pointer-events-none absolute bottom-8 right-8 hidden lg:flex flex-col items-end opacity-[0.08] z-10">
+          <span className="font-display font-bold text-white text-[7rem] leading-none">TDK</span>
+          <span className="tracking-[0.9em] text-xs uppercase text-white pr-2">Sports</span>
         </div>
       </section>
+
 
       {/* EVENT EDITIONS — TIMELINE */}
       <section className="py-20 md:py-24 bg-background">
