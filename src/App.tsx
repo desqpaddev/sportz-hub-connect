@@ -1,0 +1,70 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider, useAuth } from "@/hooks/useAuth";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Index from "./pages/Index.tsx";
+import EventsPage from "./pages/Events.tsx";
+import EventDetail from "./pages/EventDetail.tsx";
+import AboutPage from "./pages/About.tsx";
+import AuthPage from "./pages/Auth.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import AdminDashboard from "./pages/AdminDashboard.tsx";
+import NotFound from "./pages/NotFound.tsx";
+import Results from "./pages/Results.tsx";
+import MyTicket from "./pages/MyTicket.tsx";
+import PaymentStatus from "./pages/PaymentStatus.tsx";
+import ChatbotWidget from "@/components/ChatbotWidget";
+
+const queryClient = new QueryClient();
+
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="min-h-screen bg-background pt-24 flex items-center justify-center"><p className="text-muted-foreground">Loading...</p></div>;
+  if (!user) return <Navigate to="/auth" replace />;
+  return <>{children}</>;
+};
+
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, roles, loading } = useAuth();
+  if (loading) return <div className="min-h-screen bg-background pt-24 flex items-center justify-center"><p className="text-muted-foreground">Loading...</p></div>;
+  if (!user) return <Navigate to="/auth" replace />;
+  // Allow access if user has any role beyond 'user'
+  const hasAdminRole = roles.some(r => r !== "user");
+  if (!hasAdminRole) return <Navigate to="/dashboard" replace />;
+  return <>{children}</>;
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AuthProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventDetail />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/ticket/:regId" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
+            <Route path="/payment-status" element={<ProtectedRoute><PaymentStatus /></ProtectedRoute>} />
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <ChatbotWidget />
+        </AuthProvider>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
