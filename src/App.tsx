@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Index from "./pages/Index.tsx";
 import EventsPage from "./pages/Events.tsx";
 import PastEvents from "./pages/PastEvents.tsx";
+import PastEventDetail from "./pages/PastEventDetail.tsx";
 import EventDetail from "./pages/EventDetail.tsx";
 import AboutPage from "./pages/About.tsx";
 import AuthPage from "./pages/Auth.tsx";
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/past-events" element={<PastEvents />} />
+            <Route path="/past-events/:id" element={<PastEventDetail />} />
             <Route path="/events/:id" element={<EventDetail />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<AuthPage />} />
