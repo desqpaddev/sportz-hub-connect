@@ -397,18 +397,45 @@ const Dashboard = () => {
                 {uploadingAvatar && <p className="text-xs text-muted-foreground mt-2">Uploading...</p>}
               </div>
 
-              {/* Edit Profile Form */}
+              {/* Verified Profile Details (from HyperVerge KYC) */}
               <div className="lg:col-span-2 rounded-lg border border-border bg-card p-6 shadow-card">
-                <h2 className="text-xl font-bold font-display text-foreground mb-4 uppercase">Edit Profile</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Full Name</Label><Input value={editProfile.full_name} onChange={(e) => setEditProfile({ ...editProfile, full_name: e.target.value })} /></div>
-                  <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone</Label><Input value={editProfile.phone} onChange={(e) => setEditProfile({ ...editProfile, phone: e.target.value })} /></div>
-                  <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">School</Label><Input value={editProfile.school} onChange={(e) => setEditProfile({ ...editProfile, school: e.target.value })} /></div>
-                  <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">City</Label><Input value={editProfile.city} onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })} /></div>
-                </div>
-                <Button onClick={saveProfile} disabled={saving} className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider font-bold">
-                  {saving ? "Saving..." : "Save Changes"}
-                </Button>
+                <h2 className="text-xl font-bold font-display text-foreground mb-1 uppercase">Verified Profile</h2>
+                <p className="text-xs text-muted-foreground mb-4">Details fetched from your verified ID document</p>
+                {(() => {
+                  const vr: any = (profile as any)?.verification_result || {};
+                  const ocr = vr.ocr || vr.details || vr;
+                  const rows: { label: string; value: any }[] = [
+                    { label: "Name on ID", value: ocr.name || ocr.fullName || ocr.full_name || (profile as any)?.full_name },
+                    { label: "Date of Birth", value: ocr.dob || ocr.date_of_birth || (profile as any)?.date_of_birth },
+                    { label: "Gender", value: ocr.gender || (profile as any)?.gender },
+                    { label: "ID Type", value: (profile as any)?.id_document_type },
+                    { label: "ID Number", value: ocr.idNumber || ocr.id_number || (profile as any)?.id_document_number },
+                    { label: "Father's Name", value: ocr.fatherName || ocr.father_name },
+                    { label: "Address", value: ocr.address || (profile as any)?.address },
+                    { label: "Phone", value: (profile as any)?.phone },
+                    { label: "Email", value: user?.email },
+                  ];
+                  const hasAny = rows.some(r => r.value);
+                  if (!hasAny) {
+                    return (
+                      <div className="text-sm text-muted-foreground p-4 border border-dashed border-border rounded-md text-center">
+                        No verified details yet. Complete your identity verification to auto-fill these fields.
+                      </div>
+                    );
+                  }
+                  return (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {rows.map((r) => (
+                        <div key={r.label}>
+                          <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{r.label}</Label>
+                          <div className="mt-1 text-sm font-medium text-foreground border border-border bg-muted/30 rounded-md px-3 py-2 min-h-[38px]">
+                            {r.value || <span className="text-muted-foreground">—</span>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Verification Details Card (HyperVerge) */}
