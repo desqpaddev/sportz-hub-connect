@@ -53,7 +53,7 @@ const App = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/results" element={<Results />} />
+            
             <Route path="/ticket/:regId" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
             <Route path="/payment-status" element={<ProtectedRoute><PaymentStatus /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
