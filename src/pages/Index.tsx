@@ -108,7 +108,7 @@ const Index = () => {
         {/* Background image with heavy scrim for readability */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://tdksports.in/img/swimathon2026.webp"
+            src={heroSwim.url}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-40"
