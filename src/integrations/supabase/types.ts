@@ -249,43 +249,115 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           age_group: string | null
           avatar_url: string | null
+          blood_group: string | null
           board: string | null
           city: string | null
           created_at: string
+          date_of_birth: string | null
+          email: string | null
+          emergency_contact_name: string | null
+          emergency_contact_phone: string | null
+          emergency_contact_relation: string | null
           full_name: string
+          gender: string | null
           id: string
+          id_document_number: string | null
+          id_document_type: string | null
+          id_document_url: string | null
+          medical_conditions: string | null
+          occupation: string | null
           phone: string | null
+          pincode: string | null
+          profile_completed: boolean
           school: string | null
+          selfie_url: string | null
+          state: string | null
+          tshirt_size: string | null
           updated_at: string
           user_id: string
+          verification_notes: string | null
+          verification_provider: string | null
+          verification_result: Json | null
+          verification_status: string
+          verification_transaction_id: string | null
+          verified_at: string | null
         }
         Insert: {
+          address?: string | null
           age_group?: string | null
           avatar_url?: string | null
+          blood_group?: string | null
           board?: string | null
           city?: string | null
           created_at?: string
+          date_of_birth?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          emergency_contact_relation?: string | null
           full_name?: string
+          gender?: string | null
           id?: string
+          id_document_number?: string | null
+          id_document_type?: string | null
+          id_document_url?: string | null
+          medical_conditions?: string | null
+          occupation?: string | null
           phone?: string | null
+          pincode?: string | null
+          profile_completed?: boolean
           school?: string | null
+          selfie_url?: string | null
+          state?: string | null
+          tshirt_size?: string | null
           updated_at?: string
           user_id: string
+          verification_notes?: string | null
+          verification_provider?: string | null
+          verification_result?: Json | null
+          verification_status?: string
+          verification_transaction_id?: string | null
+          verified_at?: string | null
         }
         Update: {
+          address?: string | null
           age_group?: string | null
           avatar_url?: string | null
+          blood_group?: string | null
           board?: string | null
           city?: string | null
           created_at?: string
+          date_of_birth?: string | null
+          email?: string | null
+          emergency_contact_name?: string | null
+          emergency_contact_phone?: string | null
+          emergency_contact_relation?: string | null
           full_name?: string
+          gender?: string | null
           id?: string
+          id_document_number?: string | null
+          id_document_type?: string | null
+          id_document_url?: string | null
+          medical_conditions?: string | null
+          occupation?: string | null
           phone?: string | null
+          pincode?: string | null
+          profile_completed?: boolean
           school?: string | null
+          selfie_url?: string | null
+          state?: string | null
+          tshirt_size?: string | null
           updated_at?: string
           user_id?: string
+          verification_notes?: string | null
+          verification_provider?: string | null
+          verification_result?: Json | null
+          verification_status?: string
+          verification_transaction_id?: string | null
+          verified_at?: string | null
         }
         Relationships: []
       }
