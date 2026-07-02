@@ -142,18 +142,21 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
     categories: ["Kayak meetup", "River cleanup", "Free dive/snorkel training"],
     press: [
       {
-        label: "Mathrubhumi",
+        label: "Mathrubhumi (print)",
         source: "Mathrubhumi",
         date: "Sep 27, 2021",
-        url: "https://tdksports.in/img/gallery/paddlersmeetup/media/1.jpg",
+        url: TDK_ASSETS.images.paddlers1,
+        image: TDK_ASSETS.images.paddlers1,
       },
       {
         label: "Malayalam Manorama",
         source: "Malayalam Manorama",
         date: "Sep 27, 2021",
         url: "https://www.manoramaonline.com/district-news/ernakulam/2021/09/27/ernakulam-adventure-eco-tourism-project-in-aluva.html",
+        image: TDK_ASSETS.images.paddlers2,
       },
     ],
+    gallery: [TDK_ASSETS.images.paddlers1, TDK_ASSETS.images.paddlers2],
     sponsors: [
       { label: "Periyar Adventure Club", role: "Host" },
       { label: "TDK Sports", role: "Organisor" },
