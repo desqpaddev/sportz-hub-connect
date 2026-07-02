@@ -99,11 +99,11 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         label: "Manorama (print)",
         source: "Manorama",
         date: "Feb 15, 2023",
-        url: "/__l5e/assets-v1/", // replaced below via gallery — kept for backward compat
-        image: "MANORAMA_SWIM",
+        url: TDK_ASSETS.press.manoramaSwim,
+        image: TDK_ASSETS.press.manoramaSwim,
       },
     ],
-    gallery: ["MANORAMA_SWIM", "SWIM_NEWS1", "SWIM_NEWS2"],
+    gallery: [TDK_ASSETS.press.manoramaSwim, TDK_ASSETS.press.swimNews1, TDK_ASSETS.press.swimNews2],
     sponsors: [
       { label: "Florid", role: "Title Sponsor" },
       { label: "TDK Sports", role: "Organisor" },
