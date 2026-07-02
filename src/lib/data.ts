@@ -67,7 +67,7 @@ export const events: SportEvent[] = [
     spotsLeft: 78,
     totalSpots: 150,
     image: "",
-    description: "Multi-distance sprint series covering 200m and 400m events. Professional timing with instant results on the KHELIUM app.",
+    description: "Multi-distance sprint series covering 200m and 400m events. Professional timing with instant results on the TDK SPORTS app.",
     featured: true,
   },
   {

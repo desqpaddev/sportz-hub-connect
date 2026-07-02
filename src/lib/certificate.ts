@@ -43,7 +43,7 @@ export const generateCertificateSVG = (data: CertificateData): string => {
   <rect x="24" y="24" width="752" height="512" rx="6" fill="none" stroke="url(#border)" stroke-width="0.5" opacity="0.3"/>
   
   <text x="400" y="70" text-anchor="middle" font-family="serif" font-size="14" fill="#94a3b8" letter-spacing="6">CERTIFICATE OF ${data.medal ? "ACHIEVEMENT" : "PARTICIPATION"}</text>
-  <text x="400" y="110" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f97316">KHELIUM</text>
+  <text x="400" y="110" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f97316">TDK SPORTS</text>
   <text x="400" y="132" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#64748b" letter-spacing="3">SPORTS FOR EVERY CHILD</text>
   
   <line x1="200" y1="150" x2="600" y2="150" stroke="#f97316" stroke-width="0.5" opacity="0.4"/>
@@ -64,7 +64,7 @@ export const generateCertificateSVG = (data: CertificateData): string => {
   
   ${data.ageGroup ? `<text x="160" y="500" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#475569">Age Group: ${data.ageGroup}</text>` : ""}
   ${data.bibNumber ? `<text x="400" y="500" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#475569">BIB: ${data.bibNumber}</text>` : ""}
-  <text x="640" y="500" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#475569">KHELIUM Official</text>
+  <text x="640" y="500" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#475569">TDK SPORTS Official</text>
   
   <line x1="560" y1="480" x2="720" y2="480" stroke="#475569" stroke-width="0.5"/>
   <text x="640" y="520" text-anchor="middle" font-family="serif" font-size="9" fill="#334155">Authorized Signature</text>
@@ -79,7 +79,7 @@ export const downloadCertificate = (data: CertificateData) => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `KHELIUM_Certificate_${data.childName.replace(/\s+/g, "_")}.svg`;
+  a.download = `TDK SPORTS_Certificate_${data.childName.replace(/\s+/g, "_")}.svg`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

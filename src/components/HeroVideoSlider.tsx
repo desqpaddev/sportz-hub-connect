@@ -13,7 +13,7 @@ const slides = [
     video: "https://videos.pexels.com/video-files/3209118/3209118-uhd_2560_1440_25fps.mp4",
     tagline: "September 2026 · Kerala",
     title: ["Gateway to", "Greatness"],
-    description: "India's pioneering school sports movement. From the classroom to the podium — discover, compete, and shine at KHELIUM.",
+    description: "India's pioneering school sports movement. From the classroom to the podium — discover, compete, and shine at TDK SPORTS.",
   },
   {
     image: heroStadium,
@@ -84,8 +84,8 @@ const HeroVideoSlider = () => {
       ))}
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-khelium-navy/95 via-khelium-navy/70 to-khelium-navy/30 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-khelium-navy via-transparent to-khelium-navy/30 opacity-70 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-tdk-navy/95 via-tdk-navy/70 to-tdk-navy/30 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-tdk-navy via-transparent to-tdk-navy/30 opacity-70 z-10" />
       <div className="absolute inset-0 bg-primary/5 mix-blend-multiply z-10" />
 
       {/* Content */}

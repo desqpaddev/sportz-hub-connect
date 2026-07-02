@@ -67,7 +67,7 @@ const SportCategoryCarousel = () => {
                   />
 
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-khelium-navy via-khelium-navy/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-tdk-navy via-tdk-navy/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
 
                   {/* Red accent line at top */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10" />

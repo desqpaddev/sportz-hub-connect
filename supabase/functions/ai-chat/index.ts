@@ -37,14 +37,14 @@ serve(async (req) => {
       `• ${e.title} — ${e.sport} (${e.category}) in ${e.city} at ${e.venue} on ${e.event_date} at ${e.event_time}. Age groups: ${e.age_groups?.join(", ")}. Price: ₹${e.price}. Spots: ${e.total_spots}. Status: ${e.status}. ${e.description || ""}`
     ).join("\n") || "No events available.";
 
-    const systemPrompt = `You are KHELIUM Sports Assistant, a friendly and knowledgeable AI chatbot for the KHELIUM sports events platform. You help users with information about upcoming events, registrations, and general queries about sports events.
+    const systemPrompt = `You are TDK SPORTS Sports Assistant, a friendly and knowledgeable AI chatbot for the TDK SPORTS sports events platform. You help users with information about upcoming events, registrations, and general queries about sports events.
 
 Here are the current events:
 ${eventsContext}
 
 Key information:
-- Platform: KHELIUM — India's premier youth sports events platform
-- Contact email: ${settingsMap.smtp_from_email || "support@khelium.com"}
+- Platform: TDK SPORTS — India's premier youth sports events platform
+- Contact email: ${settingsMap.smtp_from_email || "support@tdksports.in"}
 - Website features: Event registration, online payment via Cashfree, digital tickets with QR codes, live results & leaderboard
 - Registration process: Browse events → Select ticket → Fill form → Pay online → Get digital ticket
 - Supported payment: UPI, Cards, Net Banking via Cashfree

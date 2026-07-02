@@ -372,7 +372,7 @@ const AdminDashboard = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold font-display text-foreground uppercase">Admin Dashboard</h1>
-              <p className="text-muted-foreground">Manage KHELIUM events, registrations & results</p>
+              <p className="text-muted-foreground">Manage TDK SPORTS events, registrations & results</p>
             </div>
             <Button variant="outline" onClick={signOut}>Sign Out</Button>
           </div>

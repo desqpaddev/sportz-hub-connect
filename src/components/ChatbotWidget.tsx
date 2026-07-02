@@ -10,12 +10,12 @@ import { motion, AnimatePresence } from "framer-motion";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-chat`;
-const STORAGE_KEY = "khelium_chat_conv_id";
+const STORAGE_KEY = "tdksports_chat_conv_id";
 
 const ChatbotWidget = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: "Hey there! 👋 I'm your KHELIUM Sports Assistant. Ask me anything about our events, registrations, or how to get started!" },
+    { role: "assistant", content: "Hey there! 👋 I'm your TDK SPORTS Sports Assistant. Ask me anything about our events, registrations, or how to get started!" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const ChatbotWidget = () => {
         .order("created_at", { ascending: true });
 
       if (data && data.length > 0) {
-        const welcome: Msg = { role: "assistant", content: "Hey there! 👋 I'm your KHELIUM Sports Assistant. Ask me anything about our events, registrations, or how to get started!" };
+        const welcome: Msg = { role: "assistant", content: "Hey there! 👋 I'm your TDK SPORTS Sports Assistant. Ask me anything about our events, registrations, or how to get started!" };
         const dbMessages: Msg[] = data.map((m: any) => ({
           role: m.role as "user" | "assistant",
           content: m.content,
@@ -232,7 +232,7 @@ const ChatbotWidget = () => {
               <div className="flex items-center gap-2">
                 <Bot size={20} />
                 <div>
-                  <p className="font-bold text-sm font-display uppercase tracking-wider">KHELIUM Assistant</p>
+                  <p className="font-bold text-sm font-display uppercase tracking-wider">TDK SPORTS Assistant</p>
                   <p className="text-xs opacity-80">AI-powered support</p>
                 </div>
               </div>
