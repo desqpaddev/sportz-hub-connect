@@ -104,9 +104,11 @@ const PastEvents = () => {
                         Completed
                       </Badge>
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold font-display uppercase text-foreground mb-4 leading-tight">
-                      {event.title}
-                    </h2>
+                    <Link to={`/past-events/${event.id}`}>
+                      <h2 className="text-3xl md:text-4xl font-bold font-display uppercase text-foreground mb-4 leading-tight hover:text-primary transition-colors cursor-pointer">
+                        {event.title}
+                      </h2>
+                    </Link>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5 text-sm">
                       <div className="flex items-center gap-2 text-muted-foreground">
@@ -154,6 +156,14 @@ const PastEvents = () => {
                         </div>
                       </div>
                     )}
+
+                    <div className="pt-5">
+                      <Link to={`/past-events/${event.id}`}>
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90 gap-2 uppercase tracking-wider font-semibold">
+                          View Full Details <ArrowRight size={16} />
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </motion.article>
               );
