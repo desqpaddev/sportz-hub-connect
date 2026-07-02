@@ -1,3 +1,5 @@
+import { TDK_ASSETS } from "./tdkAssets";
+
 export type PressLink = { label: string; source?: string; date?: string; url: string; excerpt?: string; image?: string };
 export type Sponsor = { label: string; role: string; logo?: string };
 
