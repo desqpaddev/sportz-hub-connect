@@ -14,7 +14,7 @@ import AuthPage from "./pages/Auth.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import Results from "./pages/Results.tsx";
+
 import MyTicket from "./pages/MyTicket.tsx";
 import PaymentStatus from "./pages/PaymentStatus.tsx";
 import ChatbotWidget from "@/components/ChatbotWidget";
@@ -53,7 +53,7 @@ const App = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/results" element={<Results />} />
+            
             <Route path="/ticket/:regId" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
             <Route path="/payment-status" element={<ProtectedRoute><PaymentStatus /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
