@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, Play, ExternalLink } from "lucide-react";
+import { Calendar, MapPin, Users, Play, ExternalLink, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { PAST_EVENTS_EXTRAS as EXTRAS } from "@/lib/pastEventsExtras";
 
 type Event = Tables<"events">;
 
