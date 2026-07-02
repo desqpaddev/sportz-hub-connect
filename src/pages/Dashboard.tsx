@@ -411,6 +411,116 @@ const Dashboard = () => {
                 </Button>
               </div>
 
+              {/* Verification Details Card (HyperVerge) */}
+              {profile && (
+                <div className="lg:col-span-3 rounded-lg border border-border bg-card p-6 shadow-card">
+                  <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
+                    <h2 className="text-xl font-bold font-display text-foreground uppercase">
+                      Identity Verification
+                    </h2>
+                    <Badge
+                      className={
+                        (profile as any).verification_status === "verified"
+                          ? "bg-green-100 text-green-700 border-green-300"
+                          : (profile as any).verification_status === "pending"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : (profile as any).verification_status === "rejected"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-secondary text-secondary-foreground"
+                      }
+                    >
+                      {((profile as any).verification_status || "unverified").toUpperCase()}
+                    </Badge>
+                  </div>
+
+                  {(() => {
+                    const p: any = profile;
+                    const vr = p.verification_result || {};
+                    const ocr = vr.ocr || vr.idDetails || vr.id || {};
+                    const face = vr.face || vr.faceMatch || {};
+                    const liveness = vr.liveness || {};
+                    const items = [
+                      { label: "ID Type", value: p.id_document_type },
+                      { label: "ID Number", value: p.id_document_number || ocr.idNumber || ocr.number },
+                      { label: "Name on ID", value: ocr.name || ocr.fullName },
+                      { label: "Date of Birth", value: ocr.dob || ocr.dateOfBirth || p.date_of_birth },
+                      { label: "Gender", value: ocr.gender || p.gender },
+                      { label: "Address (ID)", value: ocr.address },
+                      { label: "Father's Name", value: ocr.fatherName },
+                      { label: "Face Match Score", value: face.matchScore ?? face.score },
+                      { label: "Face Match Result", value: face.match ?? face.result },
+                      { label: "Liveness", value: liveness.result ?? liveness.status },
+                      { label: "Provider", value: p.verification_provider },
+                      { label: "Transaction ID", value: p.verification_transaction_id },
+                      { label: "Verified At", value: p.verified_at ? new Date(p.verified_at).toLocaleString() : null },
+                    ].filter((i) => i.value !== null && i.value !== undefined && i.value !== "");
+
+                    return (
+                      <>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                          {items.length === 0 && (
+                            <p className="col-span-full text-sm text-muted-foreground">
+                              No verification data yet. Complete your KYC to see details here.
+                            </p>
+                          )}
+                          {items.map((item) => (
+                            <div key={item.label}>
+                              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                {item.label}
+                              </span>
+                              <p className="text-sm font-medium text-foreground mt-0.5 break-words">
+                                {String(item.value)}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+
+                        {(p.id_document_url || p.selfie_url) && (
+                          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {p.id_document_url && (
+                              <div>
+                                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                  ID Document
+                                </span>
+                                <img
+                                  src={p.id_document_url}
+                                  alt="ID document"
+                                  className="mt-2 rounded-lg border border-border max-h-56 object-contain bg-muted"
+                                />
+                              </div>
+                            )}
+                            {p.selfie_url && (
+                              <div>
+                                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                  Selfie
+                                </span>
+                                <img
+                                  src={p.selfie_url}
+                                  alt="Selfie"
+                                  className="mt-2 rounded-lg border border-border max-h-56 object-contain bg-muted"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {(profile as any).verification_status !== "verified" && (
+                          <Link to="/complete-profile">
+                            <Button size="sm" className="mt-4 bg-primary text-primary-foreground uppercase font-bold">
+                              {(profile as any).verification_status === "unverified"
+                                ? "Complete Verification"
+                                : "Retry Verification"}
+                            </Button>
+                          </Link>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+              )}
+
+
+
               {/* Registration Details Card */}
               {latestReg && (
                 <div className="lg:col-span-3 rounded-lg border border-border bg-card p-6 shadow-card">
