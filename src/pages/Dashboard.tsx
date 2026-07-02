@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,7 +33,7 @@ const Dashboard = () => {
   const [latestReg, setLatestReg] = useState<Registration | null>(null);
 
   const [editProfile, setEditProfile] = useState({
-    full_name: "", phone: "", school: "", city: "", board: "", age_group: "",
+    full_name: "", phone: "", school: "", city: "",
   });
 
   useEffect(() => {
@@ -55,7 +54,6 @@ const Dashboard = () => {
       setEditProfile({
         full_name: profileRes.data.full_name || "", phone: profileRes.data.phone || "",
         school: profileRes.data.school || "", city: profileRes.data.city || "",
-        board: profileRes.data.board || "", age_group: profileRes.data.age_group || "",
       });
     }
     if (regRes.data) {
@@ -407,28 +405,6 @@ const Dashboard = () => {
                   <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone</Label><Input value={editProfile.phone} onChange={(e) => setEditProfile({ ...editProfile, phone: e.target.value })} /></div>
                   <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">School</Label><Input value={editProfile.school} onChange={(e) => setEditProfile({ ...editProfile, school: e.target.value })} /></div>
                   <div><Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">City</Label><Input value={editProfile.city} onChange={(e) => setEditProfile({ ...editProfile, city: e.target.value })} /></div>
-                  <div>
-                    <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Board</Label>
-                    <Select value={editProfile.board} onValueChange={(v) => setEditProfile({ ...editProfile, board: v })}>
-                      <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="CBSE">CBSE</SelectItem>
-                        <SelectItem value="ICSE">ICSE</SelectItem>
-                        <SelectItem value="State">State Board</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Age Group</Label>
-                    <Select value={editProfile.age_group} onValueChange={(v) => setEditProfile({ ...editProfile, age_group: v })}>
-                      <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                      <SelectContent>
-                        {["U10", "U12", "U14", "U16", "U18"].map((a) => (
-                          <SelectItem key={a} value={a}>{a}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
                 </div>
                 <Button onClick={saveProfile} disabled={saving} className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90 uppercase tracking-wider font-bold">
                   {saving ? "Saving..." : "Save Changes"}
