@@ -191,11 +191,35 @@ const PastEventDetail = () => {
                 <Handshake size={22} className="text-primary" /> Sponsors & Partners
               </h2>
               <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-                {extras.sponsors.map((s) => (
-                  <div key={s.label} className="p-4 rounded-lg border border-border bg-card">
-                    <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-1">{s.role}</p>
-                    <p className="font-semibold text-foreground">{s.label}</p>
-                  </div>
+                {extras.sponsors.map((s) => {
+                  const logo = s.logo || PARTNER_LOGOS[s.label];
+                  return (
+                    <div key={s.label} className="p-4 rounded-lg border border-border bg-card flex items-center gap-3">
+                      {logo && (
+                        <div className="w-14 h-14 shrink-0 rounded bg-white border border-border flex items-center justify-center p-1.5">
+                          <img src={logo} alt={s.label} className="max-w-full max-h-full object-contain" />
+                        </div>
+                      )}
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-wider text-primary font-semibold mb-0.5">{s.role}</p>
+                        <p className="font-semibold text-foreground text-sm truncate">{s.label}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Gallery */}
+          {extras.gallery && extras.gallery.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold font-display uppercase mb-4">Gallery</h2>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {extras.gallery.map((src) => (
+                  <a key={src} href={src} target="_blank" rel="noopener noreferrer" className="block aspect-[4/3] rounded-lg overflow-hidden border border-border bg-card">
+                    <img src={src} alt="" loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </a>
                 ))}
               </div>
             </section>
