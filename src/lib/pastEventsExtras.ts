@@ -97,9 +97,11 @@ export const PAST_EVENTS_EXTRAS: Record<string, PastEventExtras> = {
         label: "Manorama (print)",
         source: "Manorama",
         date: "Feb 15, 2023",
-        url: "https://tdksports.in/img/manorama_swimathon.png",
+        url: "/__l5e/assets-v1/", // replaced below via gallery — kept for backward compat
+        image: "MANORAMA_SWIM",
       },
     ],
+    gallery: ["MANORAMA_SWIM", "SWIM_NEWS1", "SWIM_NEWS2"],
     sponsors: [
       { label: "Florid", role: "Title Sponsor" },
       { label: "TDK Sports", role: "Organisor" },
