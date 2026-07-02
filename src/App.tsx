@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index.tsx";
 import EventsPage from "./pages/Events.tsx";
+import PastEvents from "./pages/PastEvents.tsx";
 import EventDetail from "./pages/EventDetail.tsx";
 import AboutPage from "./pages/About.tsx";
 import AuthPage from "./pages/Auth.tsx";
