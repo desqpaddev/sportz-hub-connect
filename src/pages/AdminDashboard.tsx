@@ -459,14 +459,7 @@ const AdminDashboard = () => {
                       <div><Label className="text-xs font-semibold uppercase tracking-wider">Price (₹)</Label><Input type="number" value={eventForm.price} onChange={(e) => setEventForm({ ...eventForm, price: parseInt(e.target.value) || 0 })} /></div>
                       <div><Label className="text-xs font-semibold uppercase tracking-wider">Total Spots</Label><Input type="number" value={eventForm.total_spots} onChange={(e) => setEventForm({ ...eventForm, total_spots: parseInt(e.target.value) || 100 })} /></div>
                     </div>
-                    <div>
-                      <Label className="text-xs font-semibold uppercase tracking-wider">Age Groups</Label>
-                      <div className="flex flex-wrap gap-2 mt-1">
-                        {ageGroupOptions.map((ag) => (
-                          <Badge key={ag} onClick={() => toggleAgeGroup(ag)} className={`cursor-pointer ${eventForm.age_groups.includes(ag) ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}`}>{ag}</Badge>
-                        ))}
-                      </div>
-                    </div>
+                    {/* Age Groups removed per requirement */}
                     <div><Label className="text-xs font-semibold uppercase tracking-wider">Description</Label><Textarea value={eventForm.description} onChange={(e) => setEventForm({ ...eventForm, description: e.target.value })} rows={3} /></div>
                     <div>
                       <Label className="text-xs font-semibold uppercase tracking-wider">Event Image</Label>
