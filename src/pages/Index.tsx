@@ -132,15 +132,14 @@ const Index = () => {
             <div className="flex items-center gap-3 mb-8">
               <div className="h-[2px] w-12 bg-accent" />
               <span className="text-xs md:text-sm font-semibold text-accent uppercase tracking-[0.28em]">
-                Flagship Event · 2026
+                Flagship Event · 2027
               </span>
             </div>
 
             {/* H1 */}
             <h1 className="font-display uppercase font-bold text-white leading-[0.92] tracking-tight text-5xl md:text-7xl lg:text-[5.75rem]">
-              Federal Bank<br />
               <span className="text-primary">Kochi Swimathon</span><br />
-              <span className="text-white/95">Ultra 2026</span>
+              <span className="text-white/95">Ultra 2027</span>
             </h1>
 
             {/* Supporting line */}
@@ -152,7 +151,7 @@ const Index = () => {
             <div className="mt-10 flex flex-wrap gap-y-6 gap-x-12 border-l-2 border-primary pl-6 md:pl-8">
               <div className="flex flex-col">
                 <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 mb-1.5">Date</span>
-                <span className="font-display uppercase text-2xl md:text-3xl text-white">12 April 2026</span>
+                <span className="font-display uppercase text-2xl md:text-3xl text-white">11 April 2027</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 mb-1.5">Location</span>
