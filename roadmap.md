@@ -1,0 +1,3 @@
+- [ ] Feature documentation: capabilities and process/workflow/user flows
+- [ ] User manual: guided tasks and clearly illustrative sample logins
+- [ ] Render and visually inspect each PDF before delivery
