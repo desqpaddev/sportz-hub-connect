@@ -38,7 +38,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const { data } = await supabase.from("events").select("*").neq("status", "completed").order("event_date", { ascending: true });
+      const { data } = await supabase.from("events").select("*").neq("status", "completed").eq("approval_status", "approved").order("event_date", { ascending: true });
       if (data) setEvents(data);
       setLoading(false);
     };
