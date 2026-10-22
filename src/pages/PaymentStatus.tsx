@@ -106,7 +106,7 @@ const PaymentStatus = () => {
             <p className="text-muted-foreground mb-6">Your registration is confirmed. Check your email for the ticket.</p>
             <div className="space-y-3">
               <Button onClick={() => navigate(isPat || needsEligibility ? `/eligibility/${regId}` : `/ticket/${regId}`)} className="w-full bg-primary text-primary-foreground uppercase tracking-wider font-bold">
-                View My Ticket
+                {isPat ? "View PAT Booking" : needsEligibility ? "Continue to Eligibility Test" : "View My Ticket"}
               </Button>
               <Button variant="outline" onClick={() => navigate("/dashboard")} className="w-full">
                 Go to Dashboard
