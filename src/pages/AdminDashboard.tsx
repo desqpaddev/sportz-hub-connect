@@ -410,7 +410,7 @@ const AdminDashboard = () => {
             // { value: "users", label: "Users", resource: "users" }, // Hidden for now
             { value: "finance", label: "Finance", resource: "finance", icon: <IndianRupee size={14} className="mr-1" /> },
             { value: "analytics", label: "Analytics", resource: "analytics" },
-            // { value: "leaderboard", label: "Leaderboard", resource: "results" }, // Hidden
+            { value: "leaderboard", label: "Leaderboard", resource: "results" },
             { value: "scanner", label: "Scanner", resource: "scanner", icon: <QrCode size={14} className="mr-1" /> },
             // { value: "chat", label: "Chat", resource: "chat", icon: <MessageCircle size={14} className="mr-1" /> }, // Hidden
             { value: "settings", label: "Settings", resource: "settings", icon: <Settings size={14} className="mr-1" /> },
