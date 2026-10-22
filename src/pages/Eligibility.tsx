@@ -79,7 +79,7 @@ const Eligibility = () => {
   if (!reg) return <div className="min-h-screen pt-24 flex items-center justify-center text-muted-foreground"><Loader2 className="animate-spin" /></div>;
 
   const status = reg.eligibility_status;
-  const canAct = ["pending", "rejected"].includes(status) || (status === "certificate_submitted" && false);
+  const canAct = ["pending", "rejected"].includes(status);
   const bookedSlot = slots.find((s) => s.id === reg.pat_slot_id);
 
   return (

@@ -24,6 +24,7 @@ import AdminSettings from "@/components/AdminSettings";
 import AdminChat from "@/components/AdminChat";
 import AdminUserManagement from "@/components/AdminUserManagement";
 import AdminFinance from "@/components/AdminFinance";
+import AdminPAT from "@/components/AdminPAT";
 
 type Event = Tables<"events">;
 type Registration = Tables<"registrations"> & { events?: Event | null };
@@ -417,6 +418,7 @@ const AdminDashboard = () => {
             { value: "registrations", label: "Registrations", resource: "registrations" },
             // { value: "results", label: "Results", resource: "results" }, // Hidden
             // { value: "users", label: "Users", resource: "users" }, // Hidden for now
+            { value: "pat", label: "PAT / Eligibility", resource: "registrations" },
             { value: "finance", label: "Finance", resource: "finance", icon: <IndianRupee size={14} className="mr-1" /> },
             { value: "analytics", label: "Analytics", resource: "analytics" },
             { value: "leaderboard", label: "Leaderboard", resource: "results" },
@@ -1022,6 +1024,11 @@ const AdminDashboard = () => {
           {/* LEADERBOARD TAB */}
           <TabsContent value="leaderboard">
             <AdminLeaderboard results={results} events={events} registrations={registrations} />
+          </TabsContent>
+
+          {/* PAT TAB */}
+          <TabsContent value="pat">
+            <AdminPAT />
           </TabsContent>
 
           {/* SCANNER TAB */}
