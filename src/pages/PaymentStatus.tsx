@@ -11,6 +11,8 @@ const PaymentStatus = () => {
   const { toast } = useToast();
   const [status, setStatus] = useState<"verifying" | "success" | "failed">("verifying");
   const [regId, setRegId] = useState("");
+  const [needsEligibility, setNeedsEligibility] = useState(false);
+  const isPat = searchParams.get("purpose") === "pat";
 
   useEffect(() => {
     const orderId = searchParams.get("order_id");
@@ -31,6 +33,11 @@ const PaymentStatus = () => {
 
       if (error) throw error;
 
+      if (data.success && isPat) {
+        setStatus("success");
+        toast({ title: "PAT slot booked! 🎉" });
+        return;
+      }
       if (data.success) {
         setStatus("success");
 
@@ -42,6 +49,7 @@ const PaymentStatus = () => {
           .single();
 
         if (reg) {
+          setNeedsEligibility((reg as any).eligibility_status === "pending");
           // Send ticket email
           supabase.functions.invoke("send-ticket-email", {
             body: {
@@ -97,8 +105,8 @@ const PaymentStatus = () => {
             <h1 className="text-2xl font-bold font-display text-foreground mb-2">Payment Successful!</h1>
             <p className="text-muted-foreground mb-6">Your registration is confirmed. Check your email for the ticket.</p>
             <div className="space-y-3">
-              <Button onClick={() => navigate(`/ticket/${regId}`)} className="w-full bg-primary text-primary-foreground uppercase tracking-wider font-bold">
-                View My Ticket
+              <Button onClick={() => navigate(isPat || needsEligibility ? `/eligibility/${regId}` : `/ticket/${regId}`)} className="w-full bg-primary text-primary-foreground uppercase tracking-wider font-bold">
+                {isPat ? "View PAT Booking" : needsEligibility ? "Continue to Eligibility Test" : "View My Ticket"}
               </Button>
               <Button variant="outline" onClick={() => navigate("/dashboard")} className="w-full">
                 Go to Dashboard

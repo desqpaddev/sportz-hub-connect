@@ -203,6 +203,7 @@ export type Database = {
           organizer_phone: string | null
           price: number
           rejection_reason: string | null
+          requires_eligibility: boolean
           sport: string
           status: string
           title: string
@@ -228,6 +229,7 @@ export type Database = {
           organizer_phone?: string | null
           price?: number
           rejection_reason?: string | null
+          requires_eligibility?: boolean
           sport: string
           status?: string
           title: string
@@ -253,6 +255,7 @@ export type Database = {
           organizer_phone?: string | null
           price?: number
           rejection_reason?: string | null
+          requires_eligibility?: boolean
           sport?: string
           status?: string
           title?: string
@@ -261,6 +264,50 @@ export type Database = {
           venue?: string
         }
         Relationships: []
+      }
+      pat_slots: {
+        Row: {
+          capacity: number
+          created_at: string
+          event_id: string
+          fee: number
+          id: string
+          is_active: boolean
+          slot_date: string
+          slot_time: string
+          venue: string
+        }
+        Insert: {
+          capacity?: number
+          created_at?: string
+          event_id: string
+          fee?: number
+          id?: string
+          is_active?: boolean
+          slot_date: string
+          slot_time: string
+          venue?: string
+        }
+        Update: {
+          capacity?: number
+          created_at?: string
+          event_id?: string
+          fee?: number
+          id?: string
+          is_active?: boolean
+          slot_date?: string
+          slot_time?: string
+          venue?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pat_slots_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -392,6 +439,9 @@ export type Database = {
           club_organization: string | null
           created_at: string
           date_of_birth: string | null
+          eligibility_certificate_url: string | null
+          eligibility_notes: string | null
+          eligibility_status: string
           email: string
           emergency_contact_name: string | null
           emergency_contact_phone: string | null
@@ -405,6 +455,8 @@ export type Database = {
           id_number: string | null
           last_name: string | null
           parent_name: string | null
+          pat_payment_status: string
+          pat_slot_id: string | null
           payment_status: string
           phone: string
           photo_id_type: string | null
@@ -433,6 +485,9 @@ export type Database = {
           club_organization?: string | null
           created_at?: string
           date_of_birth?: string | null
+          eligibility_certificate_url?: string | null
+          eligibility_notes?: string | null
+          eligibility_status?: string
           email: string
           emergency_contact_name?: string | null
           emergency_contact_phone?: string | null
@@ -446,6 +501,8 @@ export type Database = {
           id_number?: string | null
           last_name?: string | null
           parent_name?: string | null
+          pat_payment_status?: string
+          pat_slot_id?: string | null
           payment_status?: string
           phone: string
           photo_id_type?: string | null
@@ -474,6 +531,9 @@ export type Database = {
           club_organization?: string | null
           created_at?: string
           date_of_birth?: string | null
+          eligibility_certificate_url?: string | null
+          eligibility_notes?: string | null
+          eligibility_status?: string
           email?: string
           emergency_contact_name?: string | null
           emergency_contact_phone?: string | null
@@ -487,6 +547,8 @@ export type Database = {
           id_number?: string | null
           last_name?: string | null
           parent_name?: string | null
+          pat_payment_status?: string
+          pat_slot_id?: string | null
           payment_status?: string
           phone?: string
           photo_id_type?: string | null
@@ -683,12 +745,21 @@ export type Database = {
     }
     Functions: {
       get_event_spots_left: { Args: { event_id: string }; Returns: number }
+      get_pat_slot_booked: { Args: { _slot_id: string }; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      select_pat_slot: {
+        Args: { _reg_id: string; _slot_id: string }
+        Returns: undefined
+      }
+      submit_eligibility_certificate: {
+        Args: { _reg_id: string; _url: string }
+        Returns: undefined
       }
     }
     Enums: {

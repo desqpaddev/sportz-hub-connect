@@ -53,6 +53,16 @@ serve(async (req) => {
 
     const isPaid = cfData.order_status === "PAID";
 
+    if (String(orderId).startsWith("pat_")) {
+      if (!String(cfData.order_note || "").includes(registrationId)) throw new Error("Order does not match registration");
+      if (isPaid) {
+        await supabase.from("registrations").update({ pat_payment_status: "paid", eligibility_status: "pat_booked" } as any).eq("id", registrationId);
+      }
+      return new Response(JSON.stringify({ success: isPaid, purpose: "pat", orderStatus: cfData.order_status }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     // Update registration payment status
     await supabase.from("registrations").update({
       payment_status: isPaid ? "paid" : "failed",

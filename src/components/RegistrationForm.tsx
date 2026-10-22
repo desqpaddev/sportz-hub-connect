@@ -148,7 +148,8 @@ const RegistrationForm = ({ eventId, userId, ticketLabel, finalPrice, onSuccess 
         }).catch(() => {});
       }
 
-      setTimeout(() => navigate(`/ticket/${registrationId}`), 1500);
+      const needsElig = (data as any)?.eligibility_status === "pending";
+      setTimeout(() => navigate(needsElig ? `/eligibility/${registrationId}` : `/ticket/${registrationId}`), 1500);
     }
     setSubmitting(false);
   };

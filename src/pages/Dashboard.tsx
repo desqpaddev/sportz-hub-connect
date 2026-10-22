@@ -282,6 +282,13 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
+                      {(reg as any).eligibility_status && (reg as any).eligibility_status !== "not_required" && (
+                        <Link to={`/eligibility/${reg.id}`}>
+                          <Button variant={(reg as any).eligibility_status === "approved" ? "outline" : "default"} size="sm" className="text-xs font-semibold uppercase tracking-wider">
+                            {(reg as any).eligibility_status === "approved" ? "Eligible ✓" : "Eligibility Test"}
+                          </Button>
+                        </Link>
+                      )}
                       {(reg as any).registration_number && (
                         <Link to={`/ticket/${reg.id}`}>
                           <Button variant="outline" size="sm" className="gap-1 text-xs font-semibold uppercase tracking-wider">

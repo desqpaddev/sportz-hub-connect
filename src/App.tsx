@@ -21,6 +21,7 @@ import MyTicket from "./pages/MyTicket.tsx";
 import PaymentStatus from "./pages/PaymentStatus.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
 import HostEvent from "./pages/HostEvent.tsx";
+import Eligibility from "./pages/Eligibility.tsx";
 import ChatbotWidget from "@/components/ChatbotWidget";
 
 const queryClient = new QueryClient();
@@ -62,6 +63,7 @@ const App = () => (
             <Route path="/host-event" element={<ProtectedRoute><HostEvent /></ProtectedRoute>} />
             <Route path="/complete-profile" element={<ProtectedRoute><CompleteProfile /></ProtectedRoute>} />
             <Route path="/ticket/:regId" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
+            <Route path="/eligibility/:regId" element={<ProtectedRoute><Eligibility /></ProtectedRoute>} />
             <Route path="/payment-status" element={<ProtectedRoute><PaymentStatus /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
             <Route path="*" element={<NotFound />} />
