@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { Menu, X, LayoutDashboard, ShieldCheck, CalendarPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/tdk-logo.png";
 
-const navLinks = [
+type NavItem = { label: string; path: string; highlight?: boolean };
+
+const navLinks: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "Events", path: "/events" },
   { label: "Past Events", path: "/past-events" },
-  { label: "Host Event", path: "/host-event" },
+  { label: "Host Event", path: "/host-event", highlight: true },
   { label: "About", path: "/about" },
 ];
 
@@ -33,15 +35,24 @@ const Navbar = () => {
           <span className="text-xl font-bold tracking-tight font-display text-foreground">TDK SPORTS</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((l) => (
             <Link
               key={l.path}
               to={l.path}
-              className={`text-sm font-semibold uppercase tracking-wider transition-colors hover:text-primary ${
-                location.pathname === l.path ? "text-primary" : "text-foreground"
+              className={`text-sm font-semibold uppercase tracking-wider transition-colors ${
+                l.highlight
+                  ? `flex items-center gap-1.5 px-4 py-2 rounded-full border text-primary ${
+                      location.pathname === l.path
+                        ? "border-primary bg-primary text-primary-foreground shadow-glow"
+                        : "border-primary/40 bg-primary/5 hover:bg-primary/10 hover:text-primary"
+                    }`
+                  : `hover:text-primary ${
+                      location.pathname === l.path ? "text-primary" : "text-foreground"
+                    }`
               }`}
             >
+              {l.highlight && <CalendarPlus size={15} />}
               {l.label}
             </Link>
           ))}
@@ -94,10 +105,19 @@ const Navbar = () => {
               key={l.path}
               to={l.path}
               onClick={() => setOpen(false)}
-              className={`block py-3 text-sm font-semibold uppercase tracking-wider ${
-                location.pathname === l.path ? "text-primary" : "text-foreground"
+              className={`flex items-center gap-2 py-3 text-sm font-semibold uppercase tracking-wider ${
+                l.highlight
+                  ? `my-2 justify-center rounded-full border px-4 py-2.5 text-primary ${
+                      location.pathname === l.path
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-primary/40 bg-primary/5"
+                    }`
+                  : location.pathname === l.path
+                    ? "text-primary"
+                    : "text-foreground"
               }`}
             >
+              {l.highlight && <CalendarPlus size={15} />}
               {l.label}
             </Link>
           ))}
