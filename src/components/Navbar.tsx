@@ -105,10 +105,19 @@ const Navbar = () => {
               key={l.path}
               to={l.path}
               onClick={() => setOpen(false)}
-              className={`block py-3 text-sm font-semibold uppercase tracking-wider ${
-                location.pathname === l.path ? "text-primary" : "text-foreground"
+              className={`flex items-center gap-2 py-3 text-sm font-semibold uppercase tracking-wider ${
+                l.highlight
+                  ? `my-2 justify-center rounded-full border px-4 py-2.5 text-primary ${
+                      location.pathname === l.path
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-primary/40 bg-primary/5"
+                    }`
+                  : location.pathname === l.path
+                    ? "text-primary"
+                    : "text-foreground"
               }`}
             >
+              {l.highlight && <CalendarPlus size={15} />}
               {l.label}
             </Link>
           ))}
