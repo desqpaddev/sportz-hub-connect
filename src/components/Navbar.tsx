@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { Menu, X, LayoutDashboard, ShieldCheck, CalendarPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import logo from "@/assets/tdk-logo.png";
 
-const navLinks = [
+type NavItem = { label: string; path: string; highlight?: boolean };
+
+const navLinks: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "Events", path: "/events" },
   { label: "Past Events", path: "/past-events" },
-  { label: "Host Event", path: "/host-event" },
+  { label: "Host Event", path: "/host-event", highlight: true },
   { label: "About", path: "/about" },
 ];
 
