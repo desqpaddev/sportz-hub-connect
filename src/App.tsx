@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound.tsx";
 import MyTicket from "./pages/MyTicket.tsx";
 import PaymentStatus from "./pages/PaymentStatus.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
+import HostEvent from "./pages/HostEvent.tsx";
 import ChatbotWidget from "@/components/ChatbotWidget";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/host-event" element={<ProtectedRoute><HostEvent /></ProtectedRoute>} />
             <Route path="/complete-profile" element={<ProtectedRoute><CompleteProfile /></ProtectedRoute>} />
             <Route path="/ticket/:regId" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
             <Route path="/payment-status" element={<ProtectedRoute><PaymentStatus /></ProtectedRoute>} />

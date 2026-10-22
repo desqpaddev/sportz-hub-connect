@@ -290,6 +290,15 @@ const AdminDashboard = () => {
     fetchAll();
   };
 
+
+  const setApproval = async (id: string, status: "approved" | "rejected") => {
+    const reason = status === "rejected" ? (window.prompt("Reason for rejection (shown to organiser):") ?? "") : null;
+    const { error } = await supabase.from("events").update({ approval_status: status, rejection_reason: reason } as any).eq("id", id);
+    if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
+    toast({ title: status === "approved" ? "Event approved and live" : "Event rejected" });
+    setEvents((prev: any[]) => prev.map((e) => e.id === id ? { ...e, approval_status: status, rejection_reason: reason } : e));
+  };
+
   const deleteEvent = async (id: string) => {
     const { error } = await supabase.from("events").delete().eq("id", id);
     if (error) { toast({ title: "Error", description: error.message, variant: "destructive" }); return; }
@@ -503,10 +512,20 @@ const AdminDashboard = () => {
                       <h3 className="font-bold font-display text-foreground truncate uppercase">{ev.title}</h3>
                       <Badge className="bg-secondary text-secondary-foreground text-xs shrink-0">{ev.status}</Badge>
                       {ev.featured && <Badge className="bg-primary/10 text-primary text-xs shrink-0">Featured</Badge>}
+                      {(ev as any).approval_status !== "approved" && (
+                        <Badge className={`text-xs shrink-0 capitalize ${(ev as any).approval_status === "rejected" ? "bg-destructive/10 text-destructive" : "bg-accent/20 text-accent-foreground"}`}>{(ev as any).approval_status === "pending" ? "Awaiting approval" : (ev as any).approval_status}</Badge>
+                      )}
                     </div>
                     <p className="text-sm text-muted-foreground">{ev.sport} · {ev.city} · {ev.event_date} · ₹{ev.price}</p>
+                    {(ev as any).organizer_name && <p className="text-xs text-muted-foreground mt-1">Organiser: {(ev as any).organizer_name} · {(ev as any).organizer_phone} {(ev as any).organizer_email && `· ${(ev as any).organizer_email}`}</p>}
                   </div>
                   <div className="flex gap-2 shrink-0">
+                    {isAdmin && (ev as any).approval_status !== "approved" && (
+                      <Button size="sm" onClick={() => setApproval(ev.id, "approved")} className="uppercase text-xs font-semibold">Approve</Button>
+                    )}
+                    {isAdmin && (ev as any).approval_status === "pending" && (
+                      <Button size="sm" variant="outline" onClick={() => setApproval(ev.id, "rejected")} className="uppercase text-xs font-semibold text-destructive">Reject</Button>
+                    )}
                     <Button size="sm" variant="ghost" onClick={() => openEditEvent(ev)} className="text-muted-foreground hover:text-foreground"><Edit size={16} /></Button>
                     <Button size="sm" variant="ghost" onClick={() => deleteEvent(ev.id)} className="text-destructive hover:text-destructive"><Trash2 size={16} /></Button>
                   </div>

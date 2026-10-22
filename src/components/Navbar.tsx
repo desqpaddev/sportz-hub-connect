@@ -9,6 +9,7 @@ const navLinks = [
   { label: "Home", path: "/" },
   { label: "Events", path: "/events" },
   { label: "Past Events", path: "/past-events" },
+  { label: "Host Event", path: "/host-event" },
   { label: "About", path: "/about" },
 ];
 

@@ -46,7 +46,7 @@ const Dashboard = () => {
       supabase.from("profiles").select("*").eq("user_id", user!.id).single(),
       supabase.from("registrations").select("*, events(*)").eq("user_id", user!.id).order("created_at", { ascending: false }),
       supabase.from("results").select("*, events(*)").order("created_at", { ascending: false }),
-      supabase.from("events").select("*").order("event_date", { ascending: true }),
+      supabase.from("events").select("*").eq("approval_status", "approved").order("event_date", { ascending: true }),
     ]);
 
     if (profileRes.data) {
