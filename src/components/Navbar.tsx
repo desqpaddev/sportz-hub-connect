@@ -35,15 +35,24 @@ const Navbar = () => {
           <span className="text-xl font-bold tracking-tight font-display text-foreground">TDK SPORTS</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((l) => (
             <Link
               key={l.path}
               to={l.path}
-              className={`text-sm font-semibold uppercase tracking-wider transition-colors hover:text-primary ${
-                location.pathname === l.path ? "text-primary" : "text-foreground"
+              className={`text-sm font-semibold uppercase tracking-wider transition-colors ${
+                l.highlight
+                  ? `flex items-center gap-1.5 px-4 py-2 rounded-full border text-primary ${
+                      location.pathname === l.path
+                        ? "border-primary bg-primary text-primary-foreground shadow-glow"
+                        : "border-primary/40 bg-primary/5 hover:bg-primary/10 hover:text-primary"
+                    }`
+                  : `hover:text-primary ${
+                      location.pathname === l.path ? "text-primary" : "text-foreground"
+                    }`
               }`}
             >
+              {l.highlight && <CalendarPlus size={15} />}
               {l.label}
             </Link>
           ))}
