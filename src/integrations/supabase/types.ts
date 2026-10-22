@@ -187,6 +187,7 @@ export type Database = {
       events: {
         Row: {
           age_groups: string[]
+          approval_status: string
           category: string
           city: string
           created_at: string
@@ -197,7 +198,11 @@ export type Database = {
           featured: boolean | null
           id: string
           image_url: string | null
+          organizer_email: string | null
+          organizer_name: string | null
+          organizer_phone: string | null
           price: number
+          rejection_reason: string | null
           sport: string
           status: string
           title: string
@@ -207,6 +212,7 @@ export type Database = {
         }
         Insert: {
           age_groups?: string[]
+          approval_status?: string
           category: string
           city: string
           created_at?: string
@@ -217,7 +223,11 @@ export type Database = {
           featured?: boolean | null
           id?: string
           image_url?: string | null
+          organizer_email?: string | null
+          organizer_name?: string | null
+          organizer_phone?: string | null
           price?: number
+          rejection_reason?: string | null
           sport: string
           status?: string
           title: string
@@ -227,6 +237,7 @@ export type Database = {
         }
         Update: {
           age_groups?: string[]
+          approval_status?: string
           category?: string
           city?: string
           created_at?: string
@@ -237,7 +248,11 @@ export type Database = {
           featured?: boolean | null
           id?: string
           image_url?: string | null
+          organizer_email?: string | null
+          organizer_name?: string | null
+          organizer_phone?: string | null
           price?: number
+          rejection_reason?: string | null
           sport?: string
           status?: string
           title?: string
