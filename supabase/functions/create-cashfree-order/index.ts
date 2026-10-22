@@ -30,13 +30,24 @@ serve(async (req) => {
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     if (authError || !user) throw new Error("Unauthorized");
 
-    const { registrationId, amount, customerName, customerEmail, customerPhone, returnUrl } = await req.json();
+    const body = await req.json();
+    const { registrationId, customerName, customerEmail, customerPhone, returnUrl } = body;
+    const purpose = body.purpose === "pat" ? "pat" : "registration";
+    let amount = body.amount;
+
+    if (purpose === "pat") {
+      const { data: reg } = await supabase.from("registrations").select("id, pat_slot_id, user_id").eq("id", registrationId).single();
+      if (!reg || reg.user_id !== user.id || !reg.pat_slot_id) throw new Error("Select a PAT slot first");
+      const { data: slot } = await supabase.from("pat_slots").select("fee").eq("id", reg.pat_slot_id).single();
+      if (!slot) throw new Error("PAT slot not found");
+      amount = slot.fee;
+    }
 
     if (!registrationId || !amount || !customerEmail || !customerPhone) {
       throw new Error("Missing required fields");
     }
 
-    const orderId = `order_${registrationId.substring(0, 8)}_${Date.now()}`;
+    const orderId = `${purpose === "pat" ? "pat" : "order"}_${registrationId.substring(0, 8)}_${Date.now()}`;
 
     // Create order via Cashfree API (Production)
     const cfResponse = await fetch("https://api.cashfree.com/pg/orders", {
@@ -60,7 +71,7 @@ serve(async (req) => {
         order_meta: {
           return_url: `${returnUrl}&order_id={order_id}`,
         },
-        order_note: `Registration: ${registrationId}`,
+        order_note: `${purpose === "pat" ? "PAT" : "Registration"}: ${registrationId}`,
       }),
     });
 
@@ -72,7 +83,7 @@ serve(async (req) => {
     }
 
     // Update registration with order info
-    await supabase.from("registrations").update({
+    if (purpose !== "pat") await supabase.from("registrations").update({
       payment_status: "pending",
     } as any).eq("id", registrationId);
 
