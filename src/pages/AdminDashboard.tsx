@@ -799,6 +799,34 @@ const AdminDashboard = () => {
                 <Input placeholder="Search..." value={searchReg} onChange={(e) => setSearchReg(e.target.value)} className="pl-9" />
               </div>
             </div>
+
+            {/* BIB GENERATION */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 p-4 rounded-lg border border-border bg-card shadow-card">
+              <div className="flex items-center gap-2 text-primary">
+                <Medal size={18} />
+                <span className="text-sm font-bold font-display uppercase tracking-wider text-foreground">Generate BIBs</span>
+              </div>
+              <Select value={bibEventId} onValueChange={setBibEventId}>
+                <SelectTrigger className="w-56 h-9"><SelectValue placeholder="Select event" /></SelectTrigger>
+                <SelectContent>{events.map((e) => <SelectItem key={e.id} value={e.id}>{e.title}</SelectItem>)}</SelectContent>
+              </Select>
+              <Input
+                value={bibPrefix}
+                onChange={(e) => setBibPrefix(e.target.value)}
+                placeholder="Prefix e.g. BIB"
+                className="w-32 h-9"
+              />
+              <Button
+                onClick={generateBibs}
+                disabled={generatingBibs}
+                className="bg-primary text-primary-foreground uppercase font-bold tracking-wider h-9"
+              >
+                {generatingBibs ? "Generating..." : "Generate"}
+              </Button>
+              <p className="text-xs text-muted-foreground">
+                Assigns sequential BIB numbers (like {bibPrefix.trim() || "BIB"}-001) to participants of the selected event who don't have one yet.
+              </p>
+            </div>
             <div className="overflow-x-auto rounded-lg border border-border bg-card shadow-card">
               <table className="w-full text-sm">
                 <thead className="bg-secondary">
