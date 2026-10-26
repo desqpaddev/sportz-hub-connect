@@ -17,6 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import type { Tables } from "@/integrations/supabase/types";
 import { downloadCertificate } from "@/lib/certificate";
+import { buildBibAssignments, nextBibStart } from "@/lib/bibs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import AdminLeaderboard from "@/components/AdminLeaderboard";
 import AdminQRScanner from "@/components/AdminQRScanner";
@@ -127,6 +128,9 @@ const AdminDashboard = () => {
     distance_recorded: "", score: "", medal: "", notes: "",
   });
   const [searchReg, setSearchReg] = useState("");
+  const [bibEventId, setBibEventId] = useState("");
+  const [bibPrefix, setBibPrefix] = useState("BIB");
+  const [generatingBibs, setGeneratingBibs] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
 
@@ -149,6 +153,29 @@ const AdminDashboard = () => {
     if (ticketRes.data) setTickets(ticketRes.data as unknown as TicketRow[]);
     if (discountRes.data) setDiscounts(discountRes.data as unknown as DiscountRow[]);
     setLoading(false);
+  };
+
+  const generateBibs = async () => {
+    if (!bibEventId) {
+      toast({ title: "Select an event first", variant: "destructive" });
+      return;
+    }
+    const eventRegs = registrations.filter((r) => r.event_id === bibEventId);
+    const prefix = bibPrefix.trim() || "BIB";
+    const assignments = buildBibAssignments(eventRegs, { prefix, startAt: nextBibStart(eventRegs, prefix) });
+    if (assignments.length === 0) {
+      toast({ title: "Nothing to assign — every participant already has a BIB" });
+      return;
+    }
+    setGeneratingBibs(true);
+    let ok = 0;
+    for (const a of assignments) {
+      const { error } = await supabase.from("registrations").update({ bib_number: a.bib_number }).eq("id", a.id);
+      if (!error) ok += 1;
+    }
+    setGeneratingBibs(false);
+    await fetchAll();
+    toast({ title: `Generated ${ok} BIBs ✅`, description: `Assigned ${prefix}-xxx numbers to ${ok} participant(s).` });
   };
 
   const saveTicket = async () => {
@@ -771,6 +798,34 @@ const AdminDashboard = () => {
                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input placeholder="Search..." value={searchReg} onChange={(e) => setSearchReg(e.target.value)} className="pl-9" />
               </div>
+            </div>
+
+            {/* BIB GENERATION */}
+            <div className="flex flex-wrap items-center gap-3 mb-4 p-4 rounded-lg border border-border bg-card shadow-card">
+              <div className="flex items-center gap-2 text-primary">
+                <Medal size={18} />
+                <span className="text-sm font-bold font-display uppercase tracking-wider text-foreground">Generate BIBs</span>
+              </div>
+              <Select value={bibEventId} onValueChange={setBibEventId}>
+                <SelectTrigger className="w-56 h-9"><SelectValue placeholder="Select event" /></SelectTrigger>
+                <SelectContent>{events.map((e) => <SelectItem key={e.id} value={e.id}>{e.title}</SelectItem>)}</SelectContent>
+              </Select>
+              <Input
+                value={bibPrefix}
+                onChange={(e) => setBibPrefix(e.target.value)}
+                placeholder="Prefix e.g. BIB"
+                className="w-32 h-9"
+              />
+              <Button
+                onClick={generateBibs}
+                disabled={generatingBibs}
+                className="bg-primary text-primary-foreground uppercase font-bold tracking-wider h-9"
+              >
+                {generatingBibs ? "Generating..." : "Generate"}
+              </Button>
+              <p className="text-xs text-muted-foreground">
+                Assigns sequential BIB numbers (like {bibPrefix.trim() || "BIB"}-001) to participants of the selected event who don't have one yet.
+              </p>
             </div>
             <div className="overflow-x-auto rounded-lg border border-border bg-card shadow-card">
               <table className="w-full text-sm">
