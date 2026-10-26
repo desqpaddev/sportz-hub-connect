@@ -127,6 +127,9 @@ const AdminDashboard = () => {
     distance_recorded: "", score: "", medal: "", notes: "",
   });
   const [searchReg, setSearchReg] = useState("");
+  const [bibEventId, setBibEventId] = useState("");
+  const [bibPrefix, setBibPrefix] = useState("BIB");
+  const [generatingBibs, setGeneratingBibs] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
 
