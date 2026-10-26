@@ -17,6 +17,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import type { Tables } from "@/integrations/supabase/types";
 import { downloadCertificate } from "@/lib/certificate";
+import { buildBibAssignments, nextBibStart } from "@/lib/bibs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import AdminLeaderboard from "@/components/AdminLeaderboard";
 import AdminQRScanner from "@/components/AdminQRScanner";
@@ -152,6 +153,29 @@ const AdminDashboard = () => {
     if (ticketRes.data) setTickets(ticketRes.data as unknown as TicketRow[]);
     if (discountRes.data) setDiscounts(discountRes.data as unknown as DiscountRow[]);
     setLoading(false);
+  };
+
+  const generateBibs = async () => {
+    if (!bibEventId) {
+      toast({ title: "Select an event first", variant: "destructive" });
+      return;
+    }
+    const eventRegs = registrations.filter((r) => r.event_id === bibEventId);
+    const prefix = bibPrefix.trim() || "BIB";
+    const assignments = buildBibAssignments(eventRegs, { prefix, startAt: nextBibStart(eventRegs, prefix) });
+    if (assignments.length === 0) {
+      toast({ title: "Nothing to assign — every participant already has a BIB" });
+      return;
+    }
+    setGeneratingBibs(true);
+    let ok = 0;
+    for (const a of assignments) {
+      const { error } = await supabase.from("registrations").update({ bib_number: a.bib_number }).eq("id", a.id);
+      if (!error) ok += 1;
+    }
+    setGeneratingBibs(false);
+    await fetchAll();
+    toast({ title: `Generated ${ok} BIBs ✅`, description: `Assigned ${prefix}-xxx numbers to ${ok} participant(s).` });
   };
 
   const saveTicket = async () => {
